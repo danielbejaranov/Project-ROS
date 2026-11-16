@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>daniel_gap</name><version>1.0.0</version>
+  <description>Follow the Gap y medición de vueltas en Sakhir.</description>
+  <maintainer email="74940042+danielbejaranov@users.noreply.github.com">Daniel Bejarano</maintainer>
+  <license>MIT</license>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <exec_depend>rclpy</exec_depend><exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>nav_msgs</exec_depend><exec_depend>ackermann_msgs</exec_depend>
+  <exec_depend>std_msgs</exec_depend><exec_depend>python3-numpy</exec_depend>
+  <export><build_type>ament_python</build_type></export>
+</package>

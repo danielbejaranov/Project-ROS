@@ -1,0 +1,10 @@
+daniel_gap:
+  ros__parameters:
+    controller_profile: fast
+    max_speed: 20.0
+    gain: 0.7
+    lateral_accel: 12.5
+    brake_accel: 8.25
+    smooth: 31
+    alpha: 0.6
+    target_laps: 10

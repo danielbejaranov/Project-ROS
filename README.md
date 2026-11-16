@@ -20,6 +20,22 @@ bash installation/setup_workspace.sh --dependencies-only
 
 El instalador prepara ROS 2 Humble y las herramientas del sistema. El bootstrap crea `.venv/` con acceso a ROS del sistema y descarga el motor en `external/f1tenth_gym/`, en el commit de [simulator-source.json](installation/simulator-source.json). No utiliza un entorno del equipo del autor ni cambia `.bashrc`.
 
-Este estado prepara las dependencias; la compilación de los paquetes propios se incorpora junto con el controlador y la integración ROS 2.
+## Controlador y pruebas
+
+`daniel_gap/core.py` contiene Follow the Gap y `LapCounter`; `fast_core.py` aplica el perfil rápido, y `ros_node.py` expone el nodo ROS. Los parámetros están en `config/fast_controller.yaml`. La dirección y la velocidad dependen del LiDAR; la odometría se reserva para contar y cronometrar vueltas. No se usan waypoints para conducir.
+
+Después de preparar las dependencias anteriores, ejecuta desde la raíz:
+
+```bash
+.venv/bin/python -m pytest -q tests
+.venv/bin/python optimization_20261115/benchmark_fast.py \
+  --name prueba_rapida_01 --vmax 20 --lat 12.5 --brake 8.25 \
+  --ros-float32 --settle-seconds 4
+```
+
+Las cinco pruebas verifican escaneos inválidos, corredor libre y el conteo de vueltas. El ensayo directo utiliza el mapa importado y guarda sus propios resultados en una carpeta nueva de `optimization_20261115/gym_runs/`. Un ensayo válido termina con diez vueltas y sin colisiones; no sustituye una ejecución posterior en ROS 2 y RViz.
+
+El contador detecta cruces de meta en el sentido correcto, exige distancia y tiempo mínimos y rechaza saltos, reloj invertido y contactos. La conducción continúa al cruzar la meta sin reiniciar el coche; al terminar se mantiene la dirección reactiva durante el frenado.
+
 
 Consulta [fuentes y atribuciones](THIRD_PARTY.md). El código propio se distribuye bajo [MIT](LICENSE); los mapas y las dependencias mantienen sus licencias.
