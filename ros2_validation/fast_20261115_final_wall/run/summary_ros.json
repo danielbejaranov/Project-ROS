@@ -1,0 +1,224 @@
+{
+  "runtime": "ROS 2 Humble / Fast DDS",
+  "simulator": "F1TENTH Gym ROS bridge",
+  "laps": [
+    51.49,
+    50.88999999999999,
+    50.91000000000001,
+    51.04999999999998,
+    51.390000000000015,
+    51.339999999999975,
+    51.160000000000025,
+    51.06999999999999,
+    51.629999999999995,
+    51.52999999999997
+  ],
+  "collision": false,
+  "completed": true,
+  "sim_seconds": 525.04,
+  "timing_origin": 8.58,
+  "wall_seconds": 527.064021444,
+  "received_messages": {
+    "/scan": 131234,
+    "/ego_racecar/odom": 131233,
+    "/drive": 130087,
+    "/clock": 131233,
+    "/daniel_gap/collision": 52504,
+    "/daniel_gap/status": 129085,
+    "/daniel_gap/timing_origin": 1
+  },
+  "bag_scan_sampling": "1/100; other listed topics complete for this observer",
+  "latest_status": "Daniel Bejarano | Sakhir | Vueltas 10/10 | Actual 4.00s | Tiempos [51.49, 50.88999999999999, 50.91000000000001, 51.04999999999998, 51.390000000000015, 51.339999999999975, 51.160000000000025, 51.06999999999999, 51.629999999999995, 51.52999999999997] | Invalido False",
+  "nodes": [
+    [
+      "rviz_fast_live",
+      "/"
+    ],
+    [
+      "transform_listener_impl_637f1cf242f0",
+      "/"
+    ],
+    [
+      "daniel_gap",
+      "/"
+    ],
+    [
+      "daniel_candidate_guard",
+      "/"
+    ],
+    [
+      "daniel_validation_monitor",
+      "/"
+    ],
+    [
+      "rviz",
+      "/"
+    ],
+    [
+      "transform_listener_impl_610a1b320720",
+      "/"
+    ],
+    [
+      "bridge",
+      "/"
+    ],
+    [
+      "map_server",
+      "/"
+    ],
+    [
+      "lifecycle_manager_localization",
+      "/"
+    ],
+    [
+      "ego_robot_state_publisher",
+      "/"
+    ]
+  ],
+  "topics": [
+    [
+      "/bond",
+      [
+        "bond/msg/Status"
+      ]
+    ],
+    [
+      "/clicked_point",
+      [
+        "geometry_msgs/msg/PointStamped"
+      ]
+    ],
+    [
+      "/clock",
+      [
+        "rosgraph_msgs/msg/Clock"
+      ]
+    ],
+    [
+      "/daniel_gap/collision",
+      [
+        "std_msgs/msg/Bool"
+      ]
+    ],
+    [
+      "/daniel_gap/overlay",
+      [
+        "visualization_msgs/msg/Marker"
+      ]
+    ],
+    [
+      "/daniel_gap/overlay_array",
+      [
+        "visualization_msgs/msg/MarkerArray"
+      ]
+    ],
+    [
+      "/daniel_gap/path",
+      [
+        "nav_msgs/msg/Path"
+      ]
+    ],
+    [
+      "/daniel_gap/status",
+      [
+        "std_msgs/msg/String"
+      ]
+    ],
+    [
+      "/daniel_gap/timing_origin",
+      [
+        "std_msgs/msg/Float64"
+      ]
+    ],
+    [
+      "/diagnostics",
+      [
+        "diagnostic_msgs/msg/DiagnosticArray"
+      ]
+    ],
+    [
+      "/drive",
+      [
+        "ackermann_msgs/msg/AckermannDriveStamped"
+      ]
+    ],
+    [
+      "/ego_racecar/odom",
+      [
+        "nav_msgs/msg/Odometry"
+      ]
+    ],
+    [
+      "/ego_robot_description",
+      [
+        "std_msgs/msg/String"
+      ]
+    ],
+    [
+      "/goal_pose",
+      [
+        "geometry_msgs/msg/PoseStamped"
+      ]
+    ],
+    [
+      "/initialpose",
+      [
+        "geometry_msgs/msg/PoseWithCovarianceStamped"
+      ]
+    ],
+    [
+      "/joint_states",
+      [
+        "sensor_msgs/msg/JointState"
+      ]
+    ],
+    [
+      "/map",
+      [
+        "nav_msgs/msg/OccupancyGrid"
+      ]
+    ],
+    [
+      "/map_server/transition_event",
+      [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ]
+    ],
+    [
+      "/map_updates",
+      [
+        "map_msgs/msg/OccupancyGridUpdate"
+      ]
+    ],
+    [
+      "/parameter_events",
+      [
+        "rcl_interfaces/msg/ParameterEvent"
+      ]
+    ],
+    [
+      "/rosout",
+      [
+        "rcl_interfaces/msg/Log"
+      ]
+    ],
+    [
+      "/scan",
+      [
+        "sensor_msgs/msg/LaserScan"
+      ]
+    ],
+    [
+      "/tf",
+      [
+        "tf2_msgs/msg/TFMessage"
+      ]
+    ],
+    [
+      "/tf_static",
+      [
+        "tf2_msgs/msg/TFMessage"
+      ]
+    ]
+  ]
+}

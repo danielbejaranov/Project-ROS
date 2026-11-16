@@ -1,0 +1,49 @@
+{
+  "url": "https://youtu.be/oMR08ioytbE",
+  "recording": "Continuous X11 capture of two actual RViz processes observing one native ROS 2 / F1TENTH Gym execution",
+  "width": 1920,
+  "height": 1080,
+  "fps": 15,
+  "frames": 7804,
+  "duration_seconds": 520.266667,
+  "codec": "H.264 Constrained Baseline 4.0, yuv420p",
+  "audio": "AAC silent compatibility track",
+  "source_sha256": "a5607685228197d7e9468966f6a45d8f4be36a0061008976723b52b7f31997aa",
+  "uploaded_copy_sha256": "b04c8c31ab9eb523506f2be46ccb0c6eebf8b869bf3efaab82ba8fe7af18e9ab",
+  "source_decode_ok": true,
+  "uploaded_copy_decode_ok": true,
+  "source_unchanged": true,
+  "video_invariants": {
+    "width": {
+      "source": 1920,
+      "compatible": 1920,
+      "equal": true
+    },
+    "height": {
+      "source": 1080,
+      "compatible": 1080,
+      "equal": true
+    },
+    "r_frame_rate": {
+      "source": "15/1",
+      "compatible": "15/1",
+      "equal": true
+    },
+    "avg_frame_rate": {
+      "source": "15/1",
+      "compatible": "15/1",
+      "equal": true
+    },
+    "duration": {
+      "source": "520.266667",
+      "compatible": "520.266667",
+      "equal": true
+    },
+    "nb_frames": {
+      "source": "7804",
+      "compatible": "7804",
+      "equal": true
+    }
+  },
+  "note": "The YouTube URL was supplied by the author. SHA256 identifies the local submitted MP4, not the stream re-encoded by YouTube. Neither MP4 is stored in Git."
+}

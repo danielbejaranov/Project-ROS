@@ -1,0 +1,51 @@
+{
+  "source": "ROS bag native wall timers; physical speed from Odometry.twist, commands separately",
+  "rclpy_path": "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py",
+  "bag_messages": {
+    "/clock": 131233,
+    "/scan": 1313,
+    "/ego_racecar/odom": 131233,
+    "/daniel_gap/collision": 52504,
+    "/drive": 130087,
+    "/daniel_gap/timing_origin": 1,
+    "/daniel_gap/status": 129085
+  },
+  "max_odom_linear_x_mps": 9.922265566181741,
+  "max_odom_speed_norm_mps": 9.922265566181741,
+  "max_commanded_speed_mps": 10.122748374938965,
+  "positive_collision_flags": 0,
+  "first_positive_collision_recorded_sim_time": null,
+  "csv_tenth_lap_finish_sim_time": 521.0400000000001,
+  "post_finish_sim_seconds": 3.9999999999998863,
+  "final_vx": 4.310177841718725e-29,
+  "final_vehicle_stopped": true,
+  "last_odom_before_tenth_finish": {
+    "simulation_stamp": 521.04,
+    "x": 0.8179684918967932,
+    "y": 14.9633534120144,
+    "linear_x": 9.408102020381483,
+    "linear_y": 0.0,
+    "speed_norm": 9.408102020381483
+  },
+  "first_odom_at_or_after_tenth_finish": {
+    "simulation_stamp": 521.05,
+    "x": 0.8130588774657523,
+    "y": 14.869876736261075,
+    "linear_x": 9.313002020381482,
+    "linear_y": 0.0,
+    "speed_norm": 9.313002020381482
+  },
+  "last_odom": {
+    "simulation_stamp": 525.04,
+    "x": 0.585949777969114,
+    "y": 10.304767693438341,
+    "linear_x": 4.310177841718725e-29,
+    "linear_y": 0.0,
+    "speed_norm": 4.310177841718725e-29
+  },
+  "last_drive": {
+    "bag_timestamp": 525.0400000000001,
+    "speed": 0.0,
+    "steer": 0.0015246302355080843
+  }
+}

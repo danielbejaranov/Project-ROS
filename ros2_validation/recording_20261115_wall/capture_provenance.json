@@ -1,0 +1,41 @@
+{
+  "capture_kind": "Continuous native X11 screen recording of real RViz 2 processes observing one native F1TENTH Gym ROS bridge instance",
+  "source_checkout": "work/github_remote_clone",
+  "simulation_mode": "wall",
+  "video_raw_resolution": "1920x1080",
+  "fps": 15,
+  "video_post_animation": false,
+  "physics_overrides": {},
+  "controller_timing_changes": false,
+  "presentational_changes": [
+    "Two RViz windows: whole circuit plus close-up following ego_racecar/base_link",
+    "Close-up HUD republishes text computed by original ROS monitor at a position offset from real odometry",
+    "Private X11 server; RViz Displays docks closed before controller starts"
+  ],
+  "source_files": {
+    "work/video_repair_20261115/run_real_capture.py": {
+      "sha256": "4892980c25be23c1db1cb50c9004b5ef231ff194bcdf3465aacccf65854115fb"
+    },
+    "work/video_repair_20261115/follow_hud.py": {
+      "sha256": "e0d411390d9d2f264867b4471c8f154e927fc200c3ee9cb4e0fc286249236462"
+    },
+    "work/video_repair_20261115/close_private_docks.py": {
+      "sha256": "a3df5691c2b89f85d4ae92823234d0d67969f4a1f79a1ec2107f5cf717dc8df2"
+    },
+    "work/video_repair_20261115/monitor.py": {
+      "sha256": "1c78003fde751d383c09741c9f67f63cd0b321310e8c013d91e8e0f997a8f66a"
+    },
+    "work/video_repair_20261115/overview.rviz": {
+      "sha256": "dd844cefa97defbe904a8488e25178786129113ebe50ab6640bbcb9520d7f997"
+    },
+    "work/video_repair_20261115/follow.rviz": {
+      "sha256": "bdf8947f179c0556b931c27a8c69d702ad5b9a54d545458d4881d8e51459c9ae"
+    }
+  },
+  "notes": [
+    "tanda_wall_01 was a stationary preview aborted before controller start, not a driving attempt.",
+    "Camera, HUD and dock changes affect presentation only. Native controller, simulator physics, map, LapCounter and original monitor are unchanged.",
+    "The real controller starts only after manual creation of START_WALL_02; capture begins one second before controller start.",
+    "Bag contains the full observed time interval including stationary preflight; the explicit ROS timing_origin defines the measured laps."
+  ]
+}

@@ -1,0 +1,423 @@
+{
+  "started_utc": "2026-11-16T00:45:55.140186+00:00",
+  "mode": "wall",
+  "controller_parameters": {
+    "use_sim_time": true,
+    "target_laps": 10,
+    "controller_profile": "fast",
+    "max_speed": 20.0,
+    "csv_path": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/daniel_f1tenth/ros2_validation/fast_20261115_final_wall/run/laps_ros.csv",
+    "gain": 0.7,
+    "lateral_accel": 12.5,
+    "brake_accel": 8.25,
+    "smooth": 31,
+    "alpha": 0.6
+  },
+  "domain": 94,
+  "display": ":110",
+  "display_server": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/work/ros_root/usr/bin/Xvfb",
+  "timeout_wall_seconds": 1200.0,
+  "monitor_builtin_timeout_seconds": 3600,
+  "startup_seconds": 8.0,
+  "native_python": "/usr/bin/python3",
+  "native_modules": {
+    "rclpy": {
+      "path": "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py",
+      "sha256": "9badf7f55c7db661545c294cc38974076bb3208d30a921b165200ecf749084cd"
+    },
+    "daniel_gap.ros_node": {
+      "path": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/daniel_f1tenth/daniel_gap/ros_node.py",
+      "sha256": "8af7fad1df721bf910f60b71d000f7f690aeb2f5e5c0581b0f4b1100539113ae"
+    },
+    "daniel_gap.core": {
+      "path": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/daniel_f1tenth/daniel_gap/core.py",
+      "sha256": "2b3f12af9bae0be0b9cf35e0718a90528e5bd57fe414ff73a06b57ea08f8426c"
+    },
+    "daniel_gap.fast_core": {
+      "path": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/daniel_f1tenth/daniel_gap/fast_core.py",
+      "sha256": "f73bd23e916e9be61d560bdfd0117189c7a9587eeb1472d5283e285bf3c0ecd8"
+    },
+    "f110_gym.envs.f110_env": {
+      "path": "/home/danielbejaranov/F1TEnth/f1tenth_gym/gym/f110_gym/envs/f110_env.py",
+      "sha256": "81d0e7c5ab310ec2fadc376bf2b629dec8c33597c78cd211f11791bedb626436"
+    },
+    "f1tenth_gym_ros.gym_bridge": {
+      "path": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/daniel_f1tenth/ros2_validation/simulator_bridge/f1tenth_gym_ros/gym_bridge.py",
+      "sha256": "e7153da6a6d673bff9ee5de099182e6282105b238260491cbf9ad7cf72e5a43a"
+    }
+  },
+  "simulator_share": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/work/ros_native_ws/install/f1tenth_gym_ros/share/f1tenth_gym_ros",
+  "source_bridge_config": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/work/ros_native_ws/install/f1tenth_gym_ros/share/f1tenth_gym_ros/config/sim.yaml",
+  "source_bridge_config_sha256": "a0a0433e4fb81e7d5e1ec1c60f39a08927e9e6d576a74067c59464078a2f90ba",
+  "map_yaml": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/daniel_f1tenth/results/Sakhir_map.yaml",
+  "map_yaml_sha256": "f24f04998becd72e4fa4c8dea7ff2177a9035a691d944804cd0e6278c201cf44",
+  "map_image": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/daniel_f1tenth/results/Sakhir_map.png",
+  "map_image_sha256": "f3746a4d48a72ccc3cad020bc383e370dd3a915009c87d4d6041af06e7de85eb",
+  "bridge_overrides": {
+    "validation_lockstep": false
+  },
+  "physics_overrides": {},
+  "video_requested": true,
+  "video": {
+    "size": "1280x900",
+    "fps": 15,
+    "codec": "libx264",
+    "movflags": "+faststart"
+  },
+  "status": "completed",
+  "commands": [
+    {
+      "name": "xvfb",
+      "pid": 15589,
+      "command": [
+        "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/work/ros_root/usr/bin/Xvfb",
+        ":110",
+        "-screen",
+        "0",
+        "1280x900x24",
+        "-ac",
+        "-nolisten",
+        "tcp",
+        "-noreset"
+      ]
+    },
+    {
+      "name": "monitor",
+      "pid": 15592,
+      "command": [
+        "/usr/bin/python3",
+        "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/daniel_f1tenth/ros2_validation/monitor.py",
+        "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/daniel_f1tenth/ros2_validation/fast_20261115_final_wall/run"
+      ]
+    },
+    {
+      "name": "infrastructure",
+      "pid": 15605,
+      "command": [
+        "ros2",
+        "launch",
+        "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/daniel_f1tenth/ros2_validation/fast_20261115_final_wall/candidate.launch.py"
+      ]
+    },
+    {
+      "name": "capture",
+      "pid": 15730,
+      "command": [
+        "/usr/bin/ffmpeg",
+        "-hide_banner",
+        "-nostats",
+        "-f",
+        "x11grab",
+        "-framerate",
+        "15",
+        "-video_size",
+        "1280x900",
+        "-i",
+        ":110.0",
+        "-an",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "23",
+        "-pix_fmt",
+        "yuv420p",
+        "-movflags",
+        "+faststart",
+        "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/daniel_f1tenth/ros2_validation/fast_20261115_final_wall/evidencia_ros2_rviz.mp4"
+      ]
+    },
+    {
+      "name": "controller",
+      "pid": 15787,
+      "command": [
+        "ros2",
+        "run",
+        "daniel_gap",
+        "gap_node",
+        "--ros-args",
+        "-p",
+        "use_sim_time:=true",
+        "-p",
+        "target_laps:=10",
+        "-p",
+        "controller_profile:=fast",
+        "-p",
+        "max_speed:=20.0",
+        "-p",
+        "csv_path:=/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/daniel_f1tenth/ros2_validation/fast_20261115_final_wall/run/laps_ros.csv",
+        "-p",
+        "gain:=0.7",
+        "-p",
+        "lateral_accel:=12.5",
+        "-p",
+        "brake_accel:=8.25",
+        "-p",
+        "smooth:=31",
+        "-p",
+        "alpha:=0.6"
+      ]
+    }
+  ],
+  "timing_note": "Lap times use simulation clock; video duration uses wall time.",
+  "process_exit": [
+    {
+      "name": "controller",
+      "returncode": 0,
+      "cleanup_escalation": null
+    },
+    {
+      "name": "capture",
+      "returncode": 255,
+      "cleanup_escalation": null
+    },
+    {
+      "name": "infrastructure",
+      "returncode": 0,
+      "cleanup_escalation": null
+    },
+    {
+      "name": "monitor",
+      "returncode": 0,
+      "cleanup_escalation": null
+    },
+    {
+      "name": "xvfb",
+      "returncode": 0,
+      "cleanup_escalation": null
+    }
+  ],
+  "ended_utc": "2026-11-16T00:54:43.506014+00:00",
+  "wall_seconds": 528.3658485860001,
+  "live_guard": {
+    "collision": false,
+    "invalid_status": false,
+    "latest_status": "Daniel Bejarano | Sakhir | Vueltas 10/10 | Actual 3.64s | Tiempos [51.49, 50.88999999999999, 50.91000000000001, 51.04999999999998, 51.390000000000015, 51.339999999999975, 51.160000000000025, 51.06999999999999, 51.629999999999995, 51.52999999999997] | Invalido False"
+  },
+  "summary": {
+    "runtime": "ROS 2 Humble / Fast DDS",
+    "simulator": "F1TENTH Gym ROS bridge",
+    "laps": [
+      51.49,
+      50.88999999999999,
+      50.91000000000001,
+      51.04999999999998,
+      51.390000000000015,
+      51.339999999999975,
+      51.160000000000025,
+      51.06999999999999,
+      51.629999999999995,
+      51.52999999999997
+    ],
+    "collision": false,
+    "completed": true,
+    "sim_seconds": 525.04,
+    "timing_origin": 8.58,
+    "wall_seconds": 527.064021444,
+    "received_messages": {
+      "/scan": 131234,
+      "/ego_racecar/odom": 131233,
+      "/drive": 130087,
+      "/clock": 131233,
+      "/daniel_gap/collision": 52504,
+      "/daniel_gap/status": 129085,
+      "/daniel_gap/timing_origin": 1
+    },
+    "bag_scan_sampling": "1/100; other listed topics complete for this observer",
+    "latest_status": "Daniel Bejarano | Sakhir | Vueltas 10/10 | Actual 4.00s | Tiempos [51.49, 50.88999999999999, 50.91000000000001, 51.04999999999998, 51.390000000000015, 51.339999999999975, 51.160000000000025, 51.06999999999999, 51.629999999999995, 51.52999999999997] | Invalido False",
+    "nodes": [
+      [
+        "rviz_fast_live",
+        "/"
+      ],
+      [
+        "transform_listener_impl_637f1cf242f0",
+        "/"
+      ],
+      [
+        "daniel_gap",
+        "/"
+      ],
+      [
+        "daniel_candidate_guard",
+        "/"
+      ],
+      [
+        "daniel_validation_monitor",
+        "/"
+      ],
+      [
+        "rviz",
+        "/"
+      ],
+      [
+        "transform_listener_impl_610a1b320720",
+        "/"
+      ],
+      [
+        "bridge",
+        "/"
+      ],
+      [
+        "map_server",
+        "/"
+      ],
+      [
+        "lifecycle_manager_localization",
+        "/"
+      ],
+      [
+        "ego_robot_state_publisher",
+        "/"
+      ]
+    ],
+    "topics": [
+      [
+        "/bond",
+        [
+          "bond/msg/Status"
+        ]
+      ],
+      [
+        "/clicked_point",
+        [
+          "geometry_msgs/msg/PointStamped"
+        ]
+      ],
+      [
+        "/clock",
+        [
+          "rosgraph_msgs/msg/Clock"
+        ]
+      ],
+      [
+        "/daniel_gap/collision",
+        [
+          "std_msgs/msg/Bool"
+        ]
+      ],
+      [
+        "/daniel_gap/overlay",
+        [
+          "visualization_msgs/msg/Marker"
+        ]
+      ],
+      [
+        "/daniel_gap/overlay_array",
+        [
+          "visualization_msgs/msg/MarkerArray"
+        ]
+      ],
+      [
+        "/daniel_gap/path",
+        [
+          "nav_msgs/msg/Path"
+        ]
+      ],
+      [
+        "/daniel_gap/status",
+        [
+          "std_msgs/msg/String"
+        ]
+      ],
+      [
+        "/daniel_gap/timing_origin",
+        [
+          "std_msgs/msg/Float64"
+        ]
+      ],
+      [
+        "/diagnostics",
+        [
+          "diagnostic_msgs/msg/DiagnosticArray"
+        ]
+      ],
+      [
+        "/drive",
+        [
+          "ackermann_msgs/msg/AckermannDriveStamped"
+        ]
+      ],
+      [
+        "/ego_racecar/odom",
+        [
+          "nav_msgs/msg/Odometry"
+        ]
+      ],
+      [
+        "/ego_robot_description",
+        [
+          "std_msgs/msg/String"
+        ]
+      ],
+      [
+        "/goal_pose",
+        [
+          "geometry_msgs/msg/PoseStamped"
+        ]
+      ],
+      [
+        "/initialpose",
+        [
+          "geometry_msgs/msg/PoseWithCovarianceStamped"
+        ]
+      ],
+      [
+        "/joint_states",
+        [
+          "sensor_msgs/msg/JointState"
+        ]
+      ],
+      [
+        "/map",
+        [
+          "nav_msgs/msg/OccupancyGrid"
+        ]
+      ],
+      [
+        "/map_server/transition_event",
+        [
+          "lifecycle_msgs/msg/TransitionEvent"
+        ]
+      ],
+      [
+        "/map_updates",
+        [
+          "map_msgs/msg/OccupancyGridUpdate"
+        ]
+      ],
+      [
+        "/parameter_events",
+        [
+          "rcl_interfaces/msg/ParameterEvent"
+        ]
+      ],
+      [
+        "/rosout",
+        [
+          "rcl_interfaces/msg/Log"
+        ]
+      ],
+      [
+        "/scan",
+        [
+          "sensor_msgs/msg/LaserScan"
+        ]
+      ],
+      [
+        "/tf",
+        [
+          "tf2_msgs/msg/TFMessage"
+        ]
+      ],
+      [
+        "/tf_static",
+        [
+          "tf2_msgs/msg/TFMessage"
+        ]
+      ]
+    ]
+  },
+  "video_bytes": 3256777
+}

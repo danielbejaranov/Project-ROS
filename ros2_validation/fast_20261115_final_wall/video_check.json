@@ -1,0 +1,50 @@
+{
+  "full_video_decoded": true,
+  "decode_exit_code": 0,
+  "decoder_errors": "",
+  "ffprobe_exit_code": 0,
+  "probe": {
+    "programs": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "profile": "High",
+        "codec_type": "video",
+        "width": 1280,
+        "height": 900,
+        "pix_fmt": "yuv420p",
+        "level": 32,
+        "avg_frame_rate": "15/1",
+        "nb_frames": "7783"
+      }
+    ],
+    "format": {
+      "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+      "duration": "518.867000",
+      "size": "3256777"
+    }
+  },
+  "container_boxes": [
+    {
+      "type": "ftyp",
+      "offset": 0,
+      "bytes": 32
+    },
+    {
+      "type": "moov",
+      "offset": 32,
+      "bytes": 94130
+    },
+    {
+      "type": "free",
+      "offset": 94162,
+      "bytes": 8
+    },
+    {
+      "type": "mdat",
+      "offset": 94170,
+      "bytes": 3162607
+    }
+  ],
+  "source": "Recorded RViz capture; wall duration differs from simulation lap time."
+}
