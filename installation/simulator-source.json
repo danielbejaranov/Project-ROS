@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/f1tenth/f1tenth_gym.git",
+  "commit": "4fdb9c7e6fb7c701290f4dc18377d07c1681724f",
+  "commit_url": "https://github.com/f1tenth/f1tenth_gym/commit/4fdb9c7e6fb7c701290f4dc18377d07c1681724f",
+  "python_distribution": "f110-gym",
+  "version": "0.2.1",
+  "verification": "The original validation source is a clean checkout of this commit. SHA256 of upstream dynamic_models.py also checked against raw.githubusercontent.com on 2026-11-15.",
+  "sha256": {
+    "setup.py": "977fd1989f42dc52b48a8e3c6399fdb68af24f2e1fcf2c26fa9bd2a522d7beaa",
+    "gym/f110_gym/envs/base_classes.py": "8f198397851c5eebfa27562b8d56222e4cc4731eac92344a5128695ffd3b53f6",
+    "gym/f110_gym/envs/dynamic_models.py": "e9bebc447179163c11d536228c29a5cc155b6d9916f06e5ad2358259d03af6f6",
+    "gym/f110_gym/envs/collision_models.py": "8f41130beab646d45eee6f79cd7e549b9c9732ca4ef7290d479871f77449ef02",
+    "gym/f110_gym/envs/laser_models.py": "0130b9d354972fe2876666d6c0b801e9562e694d7f8011d63badd8471f605730",
+    "gym/f110_gym/envs/f110_env.py": "81d0e7c5ab310ec2fadc376bf2b629dec8c33597c78cd211f11791bedb626436"
+  }
+}

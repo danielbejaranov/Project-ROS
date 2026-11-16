@@ -1,0 +1,18 @@
+# Ubuntu 22.04 amd64 / CPython 3.10. Bootstrap uses --system-site-packages.
+# Pillow, PyYAML and pytest are provided by the APT installer; the exact versions
+# below prevent an unnoticed change of the validated Python environment.
+numpy==1.22.0
+scipy==1.11.4
+numba==0.68.0
+llvmlite==0.50.0
+Pillow==9.0.1
+PyYAML==5.4.1
+pytest==6.2.5
+transforms3d==0.3.1
+future==0.18.2
+cloudpickle==1.6.0
+pyglet==1.4.11
+PyOpenGL==3.1.10
+imageio-ffmpeg==0.6.0
+# Gym 0.19 is installed separately with --no-deps --no-build-isolation because
+# its optional dependency metadata is rejected by recent pip/wheel releases.

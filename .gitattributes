@@ -1,0 +1,4 @@
+# Conservar los bytes de las evidencias y aceptar CRLF del escritor CSV de ROS.
+*.csv -text whitespace=cr-at-eol
+*.mp4 -text
+*.png -text
