@@ -10,6 +10,8 @@ La grabación muestra diez vueltas en Sakhir, el contador y el cronómetro, con 
 
 Esta guía prepara el proyecto dentro de su propio clon. No requiere las carpetas, los rosbags ni el entorno Python del equipo del autor. Ejecuta los comandos desde la raíz del repositorio, salvo cuando se indique otra cosa.
 
+La segunda parte tiene [dos escenarios reproducibles: cinco obstáculos y adelantamiento a otro robot](scenarios/README.md). Se ejecutan y auditan por separado. Los resultados y el video de esta guía principal corresponden a la primera parte, sin esos obstáculos ni segundo robot.
+
 ## 1. Requisitos y alcance
 
 - Ubuntu **22.04 amd64/x86_64**, Python **3.10** del sistema y ROS 2 **Humble** instalado por APT en `/opt/ros/humble`. Es la plataforma probada. No se ha validado esta guía en Windows, macOS, ARM ni otras versiones de Ubuntu/ROS.
@@ -78,7 +80,7 @@ external/f1tenth_gym/       Motor externo en el commit fijado
 
 Los dos paquetes se compilan como hermanos. Clonar únicamente este repositorio dentro de un `src/` y ejecutar colcon sin preparar el bridge anidado no es el procedimiento de esta guía.
 
-`check` debe terminar con código **0** y todas sus comprobaciones aprobadas: Python y módulos, ROS nativo, ambos paquetes, herramientas y mapa. Las pruebas del núcleo deben mostrar **5 passed**. No continúes si falla una comprobación. La primera preparación y la primera ejecución pueden tardar por las descargas y la compilación JIT de Numba.
+`check` debe terminar con código **0** y todas sus comprobaciones aprobadas: Python y módulos, ROS nativo, ambos paquetes, herramientas y mapa. Las pruebas actuales deben mostrar **13 passed** (las cinco del núcleo y las regresiones de la segunda parte). No continúes si falla una comprobación. La primera preparación y la primera ejecución pueden tardar por las descargas y la compilación JIT de Numba.
 
 `start_ros2.sh` activa ROS, `.venv` y el overlay en cada llamada. No necesitas activar nada manualmente ni añadir rutas al perfil de tu usuario. En cada terminal nueva, vuelve a la raíz y utiliza el mismo lanzador.
 
@@ -160,7 +162,7 @@ El comando anterior graba una vista de RViz a 1280×900. Para usar la disposici�
 Desde la raíz, en la primera terminal, elige otra carpeta, pantalla y dominio libres. El archivo de inicio tampoco debe existir:
 
 ```bash
-test ! -e .runtime/iniciar_doble_01
+test ! -e .runtime/iniciar_doble_01 &&
 ./start_ros2.sh exec python3 ros2_validation/run_real_capture.py \
   --out ros2_validation/mis_pruebas/tanda_doble_01 \
   --mode wall --max-speed 20 --controller-profile fast \

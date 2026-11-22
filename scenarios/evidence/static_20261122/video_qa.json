@@ -1,0 +1,60 @@
+{
+  "mode": "lockstep",
+  "source_before": {
+    "sha256": "9f3f3cef5bda2ad9dad834b39f8ec353feeb4bc79a980788059e003e312513d1",
+    "bytes": 53140930,
+    "mtime_ns": 1795382640620989458
+  },
+  "source_after": {
+    "sha256": "9f3f3cef5bda2ad9dad834b39f8ec353feeb4bc79a980788059e003e312513d1",
+    "bytes": 53140930,
+    "mtime_ns": 1795382640620989458
+  },
+  "output": {
+    "sha256": "c10c257e46e4eab2470a3b4d988a921e67251498ff603586f491d2f779d03800",
+    "bytes": 70821632
+  },
+  "checks": {
+    "source_unchanged": true,
+    "source_full_decode": true,
+    "output_full_decode": true,
+    "frames_unchanged": true,
+    "width_unchanged": true,
+    "height_unchanged": true,
+    "frame_rate_unchanged": true,
+    "video_duration_unchanged": true,
+    "container_duration_within_2ms": true,
+    "h264_baseline_level4": true,
+    "yuv420p": true,
+    "aac_stereo_silent_source": true,
+    "faststart": true
+  },
+  "passed": 13,
+  "total": 13,
+  "audio_note": "AAC stereo track generated from anullsrc solely for player compatibility; source run has no recorded narration.",
+  "timing_note": "Real ROS2/Gym/RViz X11 capture in lockstep mode. Video preserves original wall-clock capture, dimensions, frame rate and frame count. No acceleration, cuts, crop, scaling, inserted visual frames or synthetic motion.",
+  "visual_qa": {
+    "reviewed": true,
+    "frame_time_seconds": 151.2666665,
+    "source_frame": "source_middle.png",
+    "compatible_frame": "compatible_middle.png",
+    "observed": "Both frames preserve actual dual-RViz layout. Full Sakhir map, all five red obstacle labels, blue vehicle and LiDAR in close view are visible. Left HUD shows5/10 laps, current16.01s, best84.27s, collisionsNO. Right HUD partly clipped in source itself; left HUD is fully readable.",
+    "video_edits": "None. No crop, scaling, speed changes or frame insertion."
+  },
+  "file": "01_Sakhir_5_obstaculos_ROS2.mp4",
+  "source_file": "evidencia_ros2_rviz.mp4",
+  "format": {
+    "codec_name": "h264",
+    "profile": "Constrained Baseline",
+    "level": 40,
+    "width": 1920,
+    "height": 1080,
+    "pix_fmt": "yuv420p",
+    "r_frame_rate": "15/1",
+    "duration": "302.533333",
+    "nb_frames": "4538"
+  },
+  "audit_file": "checks_static.json",
+  "audit_sha256": "b4dbd27b1fce419755b62891024c385f05fac949a2adcc3f58d5fbe41143f491",
+  "manifest_sha256": "058208e852249c01e5e689026bd8a39f9102dc3609cc4d04b46b68e5f962c5b0"
+}

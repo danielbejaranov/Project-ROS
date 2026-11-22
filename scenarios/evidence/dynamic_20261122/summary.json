@@ -1,0 +1,608 @@
+{
+  "runtime": "native ROS 2 Humble / DDS",
+  "simulator": "unchanged F1TENTH Gym dynamics, two agents",
+  "completed": true,
+  "reason": "completed",
+  "finish_protocol": "both continue unchanged FTG until each has at least ten full laps; all extra laps retained, then simultaneous zero-speed commands and four measured stopped simulation seconds",
+  "vehicles": {
+    "ego": {
+      "vehicle": "ego",
+      "laps": [
+        96.88,
+        93.17000000000002,
+        93.15999999999997,
+        93.72000000000003,
+        96.75999999999999,
+        93.23999999999995,
+        93.0100000000001,
+        93.87999999899989,
+        97.1400000000001,
+        93.1099999999999,
+        93.30999999999995,
+        93.60000000000014,
+        97.30999999999995
+      ],
+      "completed_laps": 13,
+      "finished": true,
+      "global_stop": true,
+      "target_laps": 10,
+      "first_ten_laps": [
+        96.88,
+        93.17000000000002,
+        93.15999999999997,
+        93.72000000000003,
+        96.75999999999999,
+        93.23999999999995,
+        93.0100000000001,
+        93.87999999899989,
+        97.1400000000001,
+        93.1099999999999
+      ],
+      "invalid": false,
+      "collision": false,
+      "origin": 0.0,
+      "sim_time": 1260.559999999,
+      "current_lap_seconds": 32.26999999999998,
+      "x": 47.054192269479195,
+      "y": 3.0335708078998804,
+      "measured_vx": 2.472185733324273e-38
+    },
+    "opp": {
+      "vehicle": "opp",
+      "laps": [
+        124.87,
+        125.50999999999999,
+        125.51999999999998,
+        126.03000000000003,
+        125.51000000000005,
+        125.53999999899997,
+        126.02999999999997,
+        125.50999999999999,
+        125.51999999999998,
+        125.99000000000001
+      ],
+      "completed_laps": 10,
+      "finished": true,
+      "global_stop": true,
+      "target_laps": 10,
+      "first_ten_laps": [
+        124.87,
+        125.50999999999999,
+        125.51999999999998,
+        126.03000000000003,
+        125.51000000000005,
+        125.53999999899997,
+        126.02999999999997,
+        125.50999999999999,
+        125.51999999999998,
+        125.99000000000001
+      ],
+      "invalid": false,
+      "collision": false,
+      "origin": 0.0,
+      "sim_time": 1260.549999999,
+      "current_lap_seconds": 4.519999999999982,
+      "x": 0.6441943833556529,
+      "y": 14.281409575638724,
+      "measured_vx": 1.8621417805812617e-39
+    }
+  },
+  "collisions": {
+    "ego": false,
+    "opp": false
+  },
+  "origins": {
+    "ego": 0.0,
+    "opp": 0.0
+  },
+  "received_messages": {
+    "/clock": 126115,
+    "/scan": 125038,
+    "/ego_racecar/odom": 125033,
+    "/drive": 126201,
+    "/daniel_gap/collision": 126033,
+    "/daniel_dynamic/ego/status": 126032,
+    "/daniel_dynamic/ego/timing_origin": 1,
+    "/opp_scan": 124866,
+    "/opp_racecar/odom": 124837,
+    "/opp_drive": 126195,
+    "/daniel_gap/opp_collision": 126032,
+    "/daniel_dynamic/opp/status": 126031,
+    "/daniel_dynamic/opp/timing_origin": 1
+  },
+  "initial_poses": {
+    "ego": [
+      0.0,
+      0.5,
+      15.0,
+      -1.5707963267948963
+    ],
+    "opp": [
+      0.0,
+      0.5,
+      10.0,
+      -1.5707963267948963
+    ]
+  },
+  "initial_centre_gap": 5.0,
+  "overtakes": [
+    {
+      "before": {
+        "sim_time": 16.78,
+        "ego": [
+          9.005755553515117,
+          -35.15714277657407,
+          0.4928309169085417
+        ],
+        "opp": [
+          9.59885962547138,
+          -34.10437807665065,
+          0.4788728149981457
+        ],
+        "centre_distance": 1.2083401646787852,
+        "relative_longitudinal": -1.0114806278164208,
+        "relative_lateral": -0.6610543798569468,
+        "heading_cosine": 0.9999025872771103
+      },
+      "ahead": {
+        "sim_time": 18.16,
+        "ego": [
+          14.979501687063863,
+          -31.71846261306473,
+          0.5299145238056905
+        ],
+        "opp": [
+          13.782872097421981,
+          -31.73817767468474,
+          0.5633405674345808
+        ],
+        "centre_distance": 1.1967919862955212,
+        "relative_longitudinal": 1.0222496173627489,
+        "relative_lateral": -0.6223477952583206,
+        "heading_cosine": 0.9994414018167296
+      },
+      "confirmed": {
+        "sim_time": 18.66,
+        "ego": [
+          17.145858203938698,
+          -30.470734135812723,
+          0.5298463669662742
+        ],
+        "opp": [
+          14.648014527376295,
+          -31.610648538260527,
+          0.13800987071437895
+        ],
+        "centre_distance": 2.745656183401467,
+        "relative_longitudinal": 2.6309140506377724,
+        "relative_lateral": 0.7854420001549831,
+        "heading_cosine": 0.9242092859219032
+      },
+      "criterion": "nearby same-direction behind<-1m to ahead>1m sustained0.5s"
+    },
+    {
+      "before": {
+        "sim_time": 393.42,
+        "ego": [
+          7.681956010739863,
+          -35.822938818163756,
+          0.4922670594407418
+        ],
+        "opp": [
+          8.276108382158956,
+          -34.78046530822939,
+          0.47277961351369135
+        ],
+        "centre_distance": 1.1999033541822492,
+        "relative_longitudinal": -1.003681021342311,
+        "relative_lateral": -0.657565560818895,
+        "heading_cosine": 0.9998101257346305
+      },
+      "ahead": {
+        "sim_time": 394.79,
+        "ego": [
+          13.628644227675935,
+          -32.44229750425906,
+          0.5165064778321192
+        ],
+        "opp": [
+          12.439962831389352,
+          -32.46124569676942,
+          0.5437611077274833
+        ],
+        "centre_distance": 1.1888324086586932,
+        "relative_longitudinal": 1.0270395735394624,
+        "relative_lateral": -0.5987588915925255,
+        "heading_cosine": 0.9996286155646433
+      },
+      "confirmed": {
+        "sim_time": 395.29,
+        "ego": [
+          15.7970587267706,
+          -31.198150787370302,
+          0.5182843381351717
+        ],
+        "opp": [
+          13.295036412264725,
+          -32.350151001758356,
+          0.14973100250964105
+        ],
+        "centre_distance": 2.7544909069073835,
+        "relative_longitudinal": 2.6458741378594057,
+        "relative_lateral": 0.7658787128796607,
+        "heading_cosine": 0.9328495059814522
+      },
+      "criterion": "nearby same-direction behind<-1m to ahead>1m sustained0.5s"
+    },
+    {
+      "before": {
+        "sim_time": 770.619999999,
+        "ego": [
+          8.039264675390058,
+          -35.6435647294984,
+          0.498960192999824
+        ],
+        "opp": [
+          8.63027618535466,
+          -34.60266105571396,
+          0.47801528764753104
+        ],
+        "centre_distance": 1.196985824063337,
+        "relative_longitudinal": -1.0035990941472015,
+        "relative_lateral": -0.6523526049886696,
+        "heading_cosine": 0.999780663488445
+      },
+      "ahead": {
+        "sim_time": 771.989999999,
+        "ego": [
+          13.981296265669538,
+          -32.25193532205557,
+          0.530867833933925
+        ],
+        "opp": [
+          12.793127738393904,
+          -32.26898757566075,
+          0.5665225698849407
+        ],
+        "centre_distance": 1.188290885499575,
+        "relative_longitudinal": 1.0116957901762147,
+        "relative_lateral": -0.6233031820078324,
+        "heading_cosine": 0.9993644372368818
+      },
+      "confirmed": {
+        "sim_time": 772.489999999,
+        "ego": [
+          16.148933810065806,
+          -31.006435697443504,
+          0.5246907954246041
+        ],
+        "opp": [
+          13.656845513632458,
+          -32.139820137986455,
+          0.13920430919063168
+        ],
+        "centre_distance": 2.737711520099392,
+        "relative_longitudinal": 2.62524456317806,
+        "relative_lateral": 0.7766307686339502,
+        "heading_cosine": 0.926615618658161
+      },
+      "criterion": "nearby same-direction behind<-1m to ahead>1m sustained0.5s"
+    },
+    {
+      "before": {
+        "sim_time": 1148.139999999,
+        "ego": [
+          9.48763902014601,
+          -34.9369270423235,
+          0.49991709411878515
+        ],
+        "opp": [
+          10.06971716817542,
+          -33.86411297584619,
+          0.47038040189298064
+        ],
+        "centre_distance": 1.2205511016114485,
+        "relative_longitudinal": -1.005088692536249,
+        "relative_lateral": -0.6924895030111965,
+        "heading_cosine": 0.9995638236181736
+      },
+      "ahead": {
+        "sim_time": 1149.529999999,
+        "ego": [
+          15.473185752136002,
+          -31.44162796802907,
+          0.5250777318862248
+        ],
+        "opp": [
+          14.28040051992831,
+          -31.473870628965987,
+          0.5818559577878152
+        ],
+        "centre_distance": 1.193220934846959,
+        "relative_longitudinal": 1.014225159795429,
+        "relative_lateral": -0.6285885177085141,
+        "heading_cosine": 0.9983885495132565
+      },
+      "confirmed": {
+        "sim_time": 1150.029999999,
+        "ego": [
+          17.62880737344182,
+          -30.175473076967407,
+          0.5305032121941841
+        ],
+        "opp": [
+          15.135085941434992,
+          -31.32086533264621,
+          0.15208987867390786
+        ],
+        "centre_distance": 2.7441884045777836,
+        "relative_longitudinal": 2.6384671922224485,
+        "relative_lateral": 0.7543612366664574,
+        "heading_cosine": 0.9292519934437855
+      },
+      "criterion": "nearby same-direction behind<-1m to ahead>1m sustained0.5s"
+    }
+  ],
+  "sim_seconds": 1260.579999999,
+  "stopped_since": 1256.579999999,
+  "stopped_sim_seconds": 4.0,
+  "final_measured_vx": {
+    "ego": 1.621200170343888e-38,
+    "opp": 9.888856202658267e-40
+  },
+  "wall_seconds": 649.1113627450004,
+  "bag_scan_sampling": "1/100 per vehicle; all other received messages listed are written",
+  "coverage_note": "received DDS messages, not an assertion that every simulator publication reached this observer",
+  "nodes": [
+    [
+      "daniel_dynamic_monitor",
+      "/"
+    ],
+    [
+      "bridge",
+      "/"
+    ],
+    [
+      "map_server",
+      "/"
+    ],
+    [
+      "lifecycle_manager_localization",
+      "/"
+    ],
+    [
+      "ego_robot_state_publisher",
+      "/"
+    ],
+    [
+      "opp_robot_state_publisher",
+      "/"
+    ],
+    [
+      "rviz_dynamic_overview",
+      "/"
+    ],
+    [
+      "transform_listener_impl_56f8759de880",
+      "/"
+    ],
+    [
+      "rviz_dynamic_follow",
+      "/"
+    ],
+    [
+      "transform_listener_impl_6158e02bc3b0",
+      "/"
+    ],
+    [
+      "daniel_dynamic_controllers",
+      "/"
+    ]
+  ],
+  "topics": [
+    [
+      "/bond",
+      [
+        "bond/msg/Status"
+      ]
+    ],
+    [
+      "/clicked_point",
+      [
+        "geometry_msgs/msg/PointStamped"
+      ]
+    ],
+    [
+      "/clock",
+      [
+        "rosgraph_msgs/msg/Clock"
+      ]
+    ],
+    [
+      "/daniel_dynamic/ego/path",
+      [
+        "nav_msgs/msg/Path"
+      ]
+    ],
+    [
+      "/daniel_dynamic/ego/status",
+      [
+        "std_msgs/msg/String"
+      ]
+    ],
+    [
+      "/daniel_dynamic/ego/timing_origin",
+      [
+        "std_msgs/msg/Float64"
+      ]
+    ],
+    [
+      "/daniel_dynamic/opp/path",
+      [
+        "nav_msgs/msg/Path"
+      ]
+    ],
+    [
+      "/daniel_dynamic/opp/status",
+      [
+        "std_msgs/msg/String"
+      ]
+    ],
+    [
+      "/daniel_dynamic/opp/timing_origin",
+      [
+        "std_msgs/msg/Float64"
+      ]
+    ],
+    [
+      "/daniel_dynamic/overlay",
+      [
+        "visualization_msgs/msg/Marker"
+      ]
+    ],
+    [
+      "/daniel_dynamic/overlay_array",
+      [
+        "visualization_msgs/msg/MarkerArray"
+      ]
+    ],
+    [
+      "/daniel_gap/collision",
+      [
+        "std_msgs/msg/Bool"
+      ]
+    ],
+    [
+      "/daniel_gap/opp_collision",
+      [
+        "std_msgs/msg/Bool"
+      ]
+    ],
+    [
+      "/diagnostics",
+      [
+        "diagnostic_msgs/msg/DiagnosticArray"
+      ]
+    ],
+    [
+      "/drive",
+      [
+        "ackermann_msgs/msg/AckermannDriveStamped"
+      ]
+    ],
+    [
+      "/ego_racecar/odom",
+      [
+        "nav_msgs/msg/Odometry"
+      ]
+    ],
+    [
+      "/ego_racecar/opp_odom",
+      [
+        "nav_msgs/msg/Odometry"
+      ]
+    ],
+    [
+      "/ego_robot_description",
+      [
+        "std_msgs/msg/String"
+      ]
+    ],
+    [
+      "/goal_pose",
+      [
+        "geometry_msgs/msg/PoseStamped"
+      ]
+    ],
+    [
+      "/initialpose",
+      [
+        "geometry_msgs/msg/PoseWithCovarianceStamped"
+      ]
+    ],
+    [
+      "/joint_states",
+      [
+        "sensor_msgs/msg/JointState"
+      ]
+    ],
+    [
+      "/map",
+      [
+        "nav_msgs/msg/OccupancyGrid"
+      ]
+    ],
+    [
+      "/map_server/transition_event",
+      [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ]
+    ],
+    [
+      "/map_updates",
+      [
+        "map_msgs/msg/OccupancyGridUpdate"
+      ]
+    ],
+    [
+      "/opp_drive",
+      [
+        "ackermann_msgs/msg/AckermannDriveStamped"
+      ]
+    ],
+    [
+      "/opp_racecar/odom",
+      [
+        "nav_msgs/msg/Odometry"
+      ]
+    ],
+    [
+      "/opp_racecar/opp_odom",
+      [
+        "nav_msgs/msg/Odometry"
+      ]
+    ],
+    [
+      "/opp_robot_description",
+      [
+        "std_msgs/msg/String"
+      ]
+    ],
+    [
+      "/opp_scan",
+      [
+        "sensor_msgs/msg/LaserScan"
+      ]
+    ],
+    [
+      "/parameter_events",
+      [
+        "rcl_interfaces/msg/ParameterEvent"
+      ]
+    ],
+    [
+      "/rosout",
+      [
+        "rcl_interfaces/msg/Log"
+      ]
+    ],
+    [
+      "/scan",
+      [
+        "sensor_msgs/msg/LaserScan"
+      ]
+    ],
+    [
+      "/tf",
+      [
+        "tf2_msgs/msg/TFMessage"
+      ]
+    ],
+    [
+      "/tf_static",
+      [
+        "tf2_msgs/msg/TFMessage"
+      ]
+    ]
+  ]
+}

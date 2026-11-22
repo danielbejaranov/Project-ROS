@@ -1,0 +1,46 @@
+{
+  "scenario": "dynamic",
+  "evidence_type": "compact snapshots copied from a closed native ROS run; bags and video remain local",
+  "source_run": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/work/part2_dynamic_ros_20261122/ros_lockstep_02",
+  "files": [
+    {
+      "source_relative_to_run": "checks_dynamic.json",
+      "file": "checks.json",
+      "sha256": "692febd3784d9aba740ea8016fc8ebfbb59b233844ae46c41b399a7d9011a0a1"
+    },
+    {
+      "source_relative_to_run": "run/summary_dynamic.json",
+      "file": "summary.json",
+      "sha256": "88fbcc2c5585156946d4f9e0eab99e78a6c84a9e0a0c2849fb6c35ead2a53796"
+    },
+    {
+      "source_relative_to_run": "run/laps_ego.csv",
+      "file": "laps_ego.csv",
+      "sha256": "434f7abb3212f28999b3be3d40c14d474351d1ad4e63efc8c05d67263a8897e6"
+    },
+    {
+      "source_relative_to_run": "run/laps_opp.csv",
+      "file": "laps_opp.csv",
+      "sha256": "047edf3128a49d7f6ac631a2754cade23b605d1df245b05bd885a4c92154ee55"
+    },
+    {
+      "source_relative_to_run": "manifest.json",
+      "file": "manifest.json",
+      "sha256": "687942073945e9e895e562851f7f007701d083814319cb43b26ab18ec2d90d8b"
+    },
+    {
+      "source_relative_to_run": "dynamic_controllers.yaml",
+      "file": "controllers.yaml",
+      "sha256": "4bbc45dd6a0a1e7394d2baf0a04a63794732d4ef23b2b90352acdc16b3ead429"
+    },
+    {
+      "file": "video_qa.json",
+      "sha256": "7bc084758ed7e9ee5d4e04d80c34af8f8f22cfb9d4c2a6bf4db7c09ac3a4e726"
+    },
+    {
+      "source_relative_to_run": "checks_dynamic_final.json",
+      "file": "checks_final.json",
+      "sha256": "6a9c6f71d60c3a6bcc7cee6c50dc3b489ed49e0b358c90753b4d59b00334b716"
+    }
+  ]
+}

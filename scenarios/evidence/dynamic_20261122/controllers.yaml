@@ -1,0 +1,28 @@
+controller_profile: fast
+target_laps: 10
+gate:
+  x: 0.5
+  y: 15.0
+  yaw: -1.5707963267948966
+ego:
+  start:
+  - 0.5
+  - 15.0
+  - -1.5707963267948966
+  max_speed: 5.0
+  gain: 0.7
+  lateral_accel: 3.0
+  brake_accel: 3.0
+  smooth: 31
+  alpha: 0.6
+opp:
+  start:
+  - 0.5
+  - 10.0
+  - -1.5707963267948966
+  max_speed: 3.5
+  gain: 0.7
+  lateral_accel: 3.0
+  brake_accel: 3.0
+  smooth: 31
+  alpha: 0.6

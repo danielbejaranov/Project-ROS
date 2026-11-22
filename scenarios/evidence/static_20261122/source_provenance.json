@@ -1,0 +1,18 @@
+{
+  "kind": "ROS 2 native F1TENTH Gym, static five-obstacle scenario; continuous X11 RViz recording",
+  "mode": "lockstep",
+  "obstacles": 5,
+  "map_yaml": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/results/Sakhir_obstacles_5.yaml",
+  "physics_overrides": {},
+  "source_sha256": {
+    "daniel_gap/obstacle_core.py": "d8ccf126ab6dc625da451695a94fe192b66245b4b3c950f050cce201d09c8e1e",
+    "daniel_gap/ros_node.py": "fd3e749c2f188ff8070b0094e99ed5033147c21ddbb7ed56646df820deb16787",
+    "scenarios/run_static.py": "fa3779caa7f6c1365de8188f10e505f1b76d1fcff7a7eec9a3c230cc6d94b9e2",
+    "scenarios/validate_static.py": "48ffe44f12b187e49faa1c21cd7e6ee035933a03d87bbe7977afef62052c85ae",
+    "scenarios/static_obstacles.yaml": "eb0a71d92e0a6b4ccf36fbab85cd46fdd53e983e47c96e5a29e77395d152ff62",
+    "scenarios/static_controller.yaml": "39dd8e653f4f02f97c73194b1cc300539ff43fa2a18eea9066fd6b3fb1275ade",
+    "scenarios/static_overview.rviz": "1e7dbc436f7fa320c2b91c7575c701e9b20bcb17de80ddbef9dcd6e26e4a1f4f",
+    "scenarios/static_follow.rviz": "5fd93945d3fb89824aeeadd6e4739564e7cee2e92a58fe848b2a4218dc58cc64"
+  },
+  "route_validation": "In addition to native checks, each lap must visit O1,O2,O3,O4,O5 in that order; odometry is only measurement."
+}

@@ -1,0 +1,476 @@
+{
+  "started_utc": "2026-11-22T21:18:03.448274+00:00",
+  "mode": "lockstep",
+  "controller_parameters": {
+    "use_sim_time": true,
+    "target_laps": 10,
+    "controller_profile": "obstacles",
+    "max_speed": 6.0,
+    "csv_path": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/ros2_validation/mis_pruebas/part2_static_lockstep_01/run/laps_ros.csv",
+    "gain": 0.7,
+    "lateral_accel": 6.0,
+    "brake_accel": 6.0,
+    "smooth": 11,
+    "alpha": 0.8
+  },
+  "domain": 189,
+  "display": ":189",
+  "display_server": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/work/ros_root/usr/bin/Xvfb",
+  "timeout_wall_seconds": 1800.0,
+  "monitor_builtin_timeout_seconds": 3600,
+  "startup_seconds": 8.0,
+  "native_python": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/work/github_remote_clone/.venv/bin/python3",
+  "native_modules": {
+    "rclpy": {
+      "path": "/opt/ros/humble/local/lib/python3.10/dist-packages/rclpy/__init__.py",
+      "sha256": "9badf7f55c7db661545c294cc38974076bb3208d30a921b165200ecf749084cd"
+    },
+    "daniel_gap.ros_node": {
+      "path": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/daniel_gap/ros_node.py",
+      "sha256": "fd3e749c2f188ff8070b0094e99ed5033147c21ddbb7ed56646df820deb16787"
+    },
+    "daniel_gap.core": {
+      "path": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/daniel_gap/core.py",
+      "sha256": "2b3f12af9bae0be0b9cf35e0718a90528e5bd57fe414ff73a06b57ea08f8426c"
+    },
+    "daniel_gap.fast_core": {
+      "path": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/daniel_gap/fast_core.py",
+      "sha256": "f73bd23e916e9be61d560bdfd0117189c7a9587eeb1472d5283e285bf3c0ecd8"
+    },
+    "f110_gym.envs.f110_env": {
+      "path": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/work/github_remote_clone/external/f1tenth_gym/gym/f110_gym/envs/f110_env.py",
+      "sha256": "81d0e7c5ab310ec2fadc376bf2b629dec8c33597c78cd211f11791bedb626436"
+    },
+    "f1tenth_gym_ros.gym_bridge": {
+      "path": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/ros2_validation/simulator_bridge/f1tenth_gym_ros/gym_bridge.py",
+      "sha256": "bb6fb16653c8f7290e16a950d18fa538992ebf314d61b9877be81d85c7f70c46"
+    }
+  },
+  "simulator_share": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/.ros2_ws/install/f1tenth_gym_ros/share/f1tenth_gym_ros",
+  "source_bridge_config": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/.ros2_ws/install/f1tenth_gym_ros/share/f1tenth_gym_ros/config/sim.yaml",
+  "source_bridge_config_sha256": "bd0204b88f8bee33fa833b8a252ff04183c34b2a9f87f2f3b4ea97a4c48e1e31",
+  "map_yaml": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/results/Sakhir_obstacles_5.yaml",
+  "map_yaml_sha256": "c479f9bde1f56b8422a4f9a1401dee177ec33112f8906ccc2cb70d030c22badb",
+  "map_image": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/results/Sakhir_obstacles_5.png",
+  "map_image_sha256": "836f46a0d34577910dcf937459e48e2bc84f9b769af71f14b4f443fc753e649f",
+  "bridge_overrides": {
+    "validation_lockstep": true,
+    "map_path": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/results/Sakhir_obstacles_5"
+  },
+  "physics_overrides": {},
+  "video_requested": true,
+  "video": {
+    "size": "1920x1080",
+    "fps": 15,
+    "codec": "libx264",
+    "movflags": "+faststart"
+  },
+  "status": "completed",
+  "commands": [
+    {
+      "name": "xvfb",
+      "pid": 17225,
+      "command": [
+        "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/work/ros_root/usr/bin/Xvfb",
+        ":189",
+        "-screen",
+        "0",
+        "1920x1080x24",
+        "-ac",
+        "-nolisten",
+        "tcp",
+        "-noreset"
+      ]
+    },
+    {
+      "name": "monitor",
+      "pid": 17228,
+      "command": [
+        "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/work/github_remote_clone/.venv/bin/python3",
+        "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/ros2_validation/monitor.py",
+        "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/ros2_validation/mis_pruebas/part2_static_lockstep_01/run"
+      ]
+    },
+    {
+      "name": "infrastructure",
+      "pid": 17272,
+      "command": [
+        "ros2",
+        "launch",
+        "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/ros2_validation/mis_pruebas/part2_static_lockstep_01/candidate.launch.py"
+      ]
+    },
+    {
+      "name": "visual_hud",
+      "pid": 17273,
+      "command": [
+        "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/work/github_remote_clone/.venv/bin/python3",
+        "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/ros2_validation/follow_hud.py"
+      ]
+    },
+    {
+      "name": "capture",
+      "pid": 17945,
+      "command": [
+        "/usr/bin/ffmpeg",
+        "-hide_banner",
+        "-nostats",
+        "-f",
+        "x11grab",
+        "-framerate",
+        "15",
+        "-video_size",
+        "1920x1080",
+        "-i",
+        ":189.0",
+        "-an",
+        "-c:v",
+        "libx264",
+        "-preset",
+        "veryfast",
+        "-crf",
+        "23",
+        "-pix_fmt",
+        "yuv420p",
+        "-movflags",
+        "+faststart",
+        "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/ros2_validation/mis_pruebas/part2_static_lockstep_01/evidencia_ros2_rviz.mp4"
+      ]
+    },
+    {
+      "name": "controller",
+      "pid": 18005,
+      "command": [
+        "ros2",
+        "run",
+        "daniel_gap",
+        "gap_node",
+        "--ros-args",
+        "-p",
+        "use_sim_time:=true",
+        "-p",
+        "target_laps:=10",
+        "-p",
+        "controller_profile:=obstacles",
+        "-p",
+        "max_speed:=6.0",
+        "-p",
+        "csv_path:=/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/ros2_validation/mis_pruebas/part2_static_lockstep_01/run/laps_ros.csv",
+        "-p",
+        "gain:=0.7",
+        "-p",
+        "lateral_accel:=6.0",
+        "-p",
+        "brake_accel:=6.0",
+        "-p",
+        "smooth:=11",
+        "-p",
+        "alpha:=0.8"
+      ]
+    }
+  ],
+  "timing_note": "Lap times use simulation clock; video duration uses wall time.",
+  "visualization": {
+    "recording": "real RViz X11 capture",
+    "overview": "overview.rviz",
+    "detail": "follow.rviz",
+    "detail_target_frame": "ego_racecar/base_link",
+    "physics_control_timing_changes": false
+  },
+  "process_exit": [
+    {
+      "name": "controller",
+      "returncode": 0,
+      "cleanup_escalation": null
+    },
+    {
+      "name": "capture",
+      "returncode": 255,
+      "cleanup_escalation": null
+    },
+    {
+      "name": "visual_hud",
+      "returncode": 0,
+      "cleanup_escalation": null
+    },
+    {
+      "name": "infrastructure",
+      "returncode": 0,
+      "cleanup_escalation": null
+    },
+    {
+      "name": "monitor",
+      "returncode": 0,
+      "cleanup_escalation": null
+    },
+    {
+      "name": "xvfb",
+      "returncode": 0,
+      "cleanup_escalation": null
+    }
+  ],
+  "ended_utc": "2026-11-22T21:24:03.063651+00:00",
+  "wall_seconds": 359.6153978110001,
+  "live_guard": {
+    "collision": false,
+    "invalid_status": false,
+    "latest_status": "Daniel Bejarano | Sakhir | Vueltas 10/10 | Actual 16.04s | Tiempos [84.76, 84.36999999999999, 84.43, 84.26999999999998, 84.56, 84.35000000000002, 84.51999999999998, 84.47000000000003, 84.44999999899994, 84.31000000000006] | Invalido False"
+  },
+  "summary": {
+    "runtime": "ROS 2 Humble / Fast DDS",
+    "simulator": "F1TENTH Gym ROS bridge",
+    "laps": [
+      84.76,
+      84.36999999999999,
+      84.43,
+      84.26999999999998,
+      84.56,
+      84.35000000000002,
+      84.51999999999998,
+      84.47000000000003,
+      84.44999999899994,
+      84.31000000000006
+    ],
+    "collision": false,
+    "completed": true,
+    "sim_seconds": 861.319999999,
+    "timing_origin": 0.0,
+    "wall_seconds": 355.95285951700043,
+    "received_messages": {
+      "/scan": 86475,
+      "/ego_racecar/odom": 86468,
+      "/drive": 87157,
+      "/clock": 86566,
+      "/daniel_gap/collision": 86116,
+      "/daniel_gap/status": 86123,
+      "/daniel_gap/timing_origin": 1
+    },
+    "bag_scan_sampling": "1/100; other listed topics complete for this observer",
+    "latest_status": "Daniel Bejarano | Sakhir | Vueltas 10/10 | Actual 16.83s | Tiempos [84.76, 84.36999999999999, 84.43, 84.26999999999998, 84.56, 84.35000000000002, 84.51999999999998, 84.47000000000003, 84.44999999899994, 84.31000000000006] | Invalido False",
+    "nodes": [
+      [
+        "daniel_candidate_guard",
+        "/"
+      ],
+      [
+        "daniel_validation_monitor",
+        "/"
+      ],
+      [
+        "daniel_gap",
+        "/"
+      ],
+      [
+        "daniel_recording_follow_hud",
+        "/"
+      ],
+      [
+        "rviz_overview",
+        "/"
+      ],
+      [
+        "transform_listener_impl_5b184e382a80",
+        "/"
+      ],
+      [
+        "rviz_detalle",
+        "/"
+      ],
+      [
+        "transform_listener_impl_57fe4ee93b50",
+        "/"
+      ],
+      [
+        "bridge",
+        "/"
+      ],
+      [
+        "map_server",
+        "/"
+      ],
+      [
+        "lifecycle_manager_localization",
+        "/"
+      ],
+      [
+        "ego_robot_state_publisher",
+        "/"
+      ],
+      [
+        "static_obstacle_labels",
+        "/"
+      ]
+    ],
+    "topics": [
+      [
+        "/bond",
+        [
+          "bond/msg/Status"
+        ]
+      ],
+      [
+        "/clicked_point",
+        [
+          "geometry_msgs/msg/PointStamped"
+        ]
+      ],
+      [
+        "/clock",
+        [
+          "rosgraph_msgs/msg/Clock"
+        ]
+      ],
+      [
+        "/daniel_gap/collision",
+        [
+          "std_msgs/msg/Bool"
+        ]
+      ],
+      [
+        "/daniel_gap/follow_overlay",
+        [
+          "visualization_msgs/msg/Marker"
+        ]
+      ],
+      [
+        "/daniel_gap/follow_overlay_array",
+        [
+          "visualization_msgs/msg/MarkerArray"
+        ]
+      ],
+      [
+        "/daniel_gap/opp_collision",
+        [
+          "std_msgs/msg/Bool"
+        ]
+      ],
+      [
+        "/daniel_gap/overlay",
+        [
+          "visualization_msgs/msg/Marker"
+        ]
+      ],
+      [
+        "/daniel_gap/overlay_array",
+        [
+          "visualization_msgs/msg/MarkerArray"
+        ]
+      ],
+      [
+        "/daniel_gap/path",
+        [
+          "nav_msgs/msg/Path"
+        ]
+      ],
+      [
+        "/daniel_gap/status",
+        [
+          "std_msgs/msg/String"
+        ]
+      ],
+      [
+        "/daniel_gap/timing_origin",
+        [
+          "std_msgs/msg/Float64"
+        ]
+      ],
+      [
+        "/diagnostics",
+        [
+          "diagnostic_msgs/msg/DiagnosticArray"
+        ]
+      ],
+      [
+        "/drive",
+        [
+          "ackermann_msgs/msg/AckermannDriveStamped"
+        ]
+      ],
+      [
+        "/ego_racecar/odom",
+        [
+          "nav_msgs/msg/Odometry"
+        ]
+      ],
+      [
+        "/ego_robot_description",
+        [
+          "std_msgs/msg/String"
+        ]
+      ],
+      [
+        "/goal_pose",
+        [
+          "geometry_msgs/msg/PoseStamped"
+        ]
+      ],
+      [
+        "/initialpose",
+        [
+          "geometry_msgs/msg/PoseWithCovarianceStamped"
+        ]
+      ],
+      [
+        "/joint_states",
+        [
+          "sensor_msgs/msg/JointState"
+        ]
+      ],
+      [
+        "/map",
+        [
+          "nav_msgs/msg/OccupancyGrid"
+        ]
+      ],
+      [
+        "/map_server/transition_event",
+        [
+          "lifecycle_msgs/msg/TransitionEvent"
+        ]
+      ],
+      [
+        "/map_updates",
+        [
+          "map_msgs/msg/OccupancyGridUpdate"
+        ]
+      ],
+      [
+        "/obstacles/markers",
+        [
+          "visualization_msgs/msg/MarkerArray"
+        ]
+      ],
+      [
+        "/parameter_events",
+        [
+          "rcl_interfaces/msg/ParameterEvent"
+        ]
+      ],
+      [
+        "/rosout",
+        [
+          "rcl_interfaces/msg/Log"
+        ]
+      ],
+      [
+        "/scan",
+        [
+          "sensor_msgs/msg/LaserScan"
+        ]
+      ],
+      [
+        "/tf",
+        [
+          "tf2_msgs/msg/TFMessage"
+        ]
+      ],
+      [
+        "/tf_static",
+        [
+          "tf2_msgs/msg/TFMessage"
+        ]
+      ]
+    ]
+  },
+  "video_bytes": 53140930
+}

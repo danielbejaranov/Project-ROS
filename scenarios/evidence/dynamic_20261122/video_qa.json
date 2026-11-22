@@ -1,0 +1,64 @@
+{
+  "mode": "lockstep",
+  "source_before": {
+    "sha256": "a387d7ac25209d1700c1c1e5dc29ba77ae63fe0fb57c151d1df5541ba790ae23",
+    "bytes": 78933939,
+    "mtime_ns": 1795383138622106266
+  },
+  "source_after": {
+    "sha256": "a387d7ac25209d1700c1c1e5dc29ba77ae63fe0fb57c151d1df5541ba790ae23",
+    "bytes": 78933939,
+    "mtime_ns": 1795383138622106266
+  },
+  "output": {
+    "sha256": "27fd91518e1f9fbff0d07fd29523bc4032680a228f120aab83575ce0b72c9bd7",
+    "bytes": 115774951
+  },
+  "checks": {
+    "source_unchanged": true,
+    "source_full_decode": true,
+    "output_full_decode": true,
+    "frames_unchanged": true,
+    "width_unchanged": true,
+    "height_unchanged": true,
+    "frame_rate_unchanged": true,
+    "video_duration_unchanged": true,
+    "container_duration_within_2ms": true,
+    "h264_baseline_level4": true,
+    "yuv420p": true,
+    "aac_stereo_silent_source": true,
+    "faststart": true
+  },
+  "passed": 13,
+  "total": 13,
+  "audio_note": "AAC stereo track generated from anullsrc solely for player compatibility; source run has no recorded narration.",
+  "timing_note": "Real ROS2/Gym/RViz X11 capture in lockstep mode. Video preserves original wall-clock capture, dimensions, frame rate and frame count. No acceleration, cuts, crop, scaling, inserted visual frames or synthetic motion.",
+  "visual_qa": {
+    "reviewed": true,
+    "frame_time_seconds": 321.5,
+    "source_frame": "source_middle.png",
+    "compatible_frame": "compatible_middle.png",
+    "observed": "Actual dual-RViz layout preserved. Full Sakhir original map and blue ego vehicle with LiDAR close view visible. Readable HUD shows ego6/10 minimum, opponent4/10 minimum, separate lap timers, zero collisions and two passes. Source frames at10s and14s show both real blue/orange vehicles before and after the first pass, with pass counter changing0 to1.",
+    "extra_source_frames": [
+      "source_early_10s.png",
+      "source_early_14s.png"
+    ],
+    "video_edits": "None. No crop, scaling, speed changes or visual frame insertion."
+  },
+  "file": "02_Sakhir_adelantamiento_ROS2.mp4",
+  "source_file": "evidencia_dynamic_ros2_rviz.mp4",
+  "format": {
+    "codec_name": "h264",
+    "profile": "Constrained Baseline",
+    "level": 40,
+    "width": 1920,
+    "height": 1080,
+    "pix_fmt": "yuv420p",
+    "r_frame_rate": "15/1",
+    "duration": "643.000000",
+    "nb_frames": "9645"
+  },
+  "audit_file": "checks_dynamic.json",
+  "audit_sha256": "692febd3784d9aba740ea8016fc8ebfbb59b233844ae46c41b399a7d9011a0a1",
+  "manifest_sha256": "687942073945e9e895e562851f7f007701d083814319cb43b26ab18ec2d90d8b"
+}

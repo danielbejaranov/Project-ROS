@@ -1,0 +1,408 @@
+{
+  "passed": true,
+  "checks": {
+    "ten_laps_csv_and_observer_agree": true,
+    "no_collision_in_entire_recorded_flag_stream": true,
+    "clock_monotonic": true,
+    "all_odom_centres_on_track": true,
+    "command_speed_within_limit": true,
+    "command_steer_within_limit": true,
+    "last_speed_command_zero": true,
+    "collision_flag_messages_present": true,
+    "summary_completed": true,
+    "summary_reports_no_collision": true,
+    "positive_csv_lap_times": true,
+    "csv_lap_indices_sequential": true,
+    "recorded_numbers_finite": true,
+    "odom_recount_not_invalid": true,
+    "odom_recount_matches_csv": true,
+    "final_vehicle_stopped": true,
+    "post_finish_observed_at_least_one_sim_second": true,
+    "audit_map_matches_recorded_map": true,
+    "each_lap_passes_all_five_obstacles_in_order": true
+  },
+  "run": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/ros2_validation/mis_pruebas/part2_static_lockstep_01/run",
+  "target_laps": 10,
+  "bag_messages": {
+    "/clock": 86566,
+    "/scan": 865,
+    "/ego_racecar/odom": 86468,
+    "/drive": 87157,
+    "/daniel_gap/status": 86123,
+    "/daniel_gap/timing_origin": 1,
+    "/daniel_gap/collision": 86116
+  },
+  "positive_collision_flags": 0,
+  "minimum_collision_messages": 1,
+  "odom_positions_checked": 86468,
+  "outside_track": 0,
+  "max_commanded_speed": 6.0,
+  "candidate_max_speed": 6.0,
+  "accepted_speed_limit": 6.0,
+  "accepted_speed_limit_float32": 6.0,
+  "max_abs_steering": 0.4189000129699707,
+  "accepted_steer_limit_float32": 0.4189000129699707,
+  "float_tolerance": 1e-06,
+  "last_commanded_speed": 0.0,
+  "max_measured_longitudinal_velocity": 5.999999999999991,
+  "max_abs_measured_longitudinal_velocity": 5.999999999999991,
+  "final_vx": 6.29368478462591e-150,
+  "last_odometry": {
+    "simulation_stamp": 861.319999999,
+    "x": 0.5929176069086632,
+    "y": 13.09143951898157,
+    "linear_x": 6.29368478462591e-150,
+    "linear_y": 0.0
+  },
+  "post_finish_sim_seconds": 16.829999999999927,
+  "speed_note": "Las velocidades medidas proceden de Odometry.twist.twist.linear.x; las órdenes Ackermann se registran por separado. La condición de parada exige abs(vx) < 0.05 m/s.",
+  "best_lap": 84.26999999999998,
+  "mean_lap": 84.4489999999,
+  "total_lap_time": 844.489999999,
+  "csv_lap_times": [
+    84.76,
+    84.36999999999999,
+    84.43,
+    84.26999999999998,
+    84.56,
+    84.35000000000002,
+    84.51999999999998,
+    84.47000000000003,
+    84.44999999899994,
+    84.31000000000006
+  ],
+  "summary_lap_times": [
+    84.76,
+    84.36999999999999,
+    84.43,
+    84.26999999999998,
+    84.56,
+    84.35000000000002,
+    84.51999999999998,
+    84.47000000000003,
+    84.44999999899994,
+    84.31000000000006
+  ],
+  "odom_recount_lap_times": [
+    84.76,
+    84.36999999999999,
+    84.43,
+    84.26999999999998,
+    84.56,
+    84.35000000000002,
+    84.51999999999998,
+    84.47000000000003,
+    84.44999999899994,
+    84.31000000000006
+  ],
+  "odom_recount_deltas_seconds": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "lap_tolerance_seconds": 0.1,
+  "first_odom_timestamp": 0.0,
+  "last_odom_timestamp": 861.319999999,
+  "timing_origin": 0.0,
+  "timing_origin_source": "rosbag:/daniel_gap/timing_origin",
+  "timing_origin_topic_messages": 1,
+  "first_recount_timestamp": 0.0,
+  "recount_odom_messages": 86468,
+  "gate": {
+    "x": 0.5,
+    "y": 15.0,
+    "yaw": -1.5707963267948966,
+    "half_width": 2.5,
+    "minimum_distance": 100.0,
+    "minimum_time": 20.0
+  },
+  "recount_note": "Reaplica el mismo LapCounter a los timestamps de odometría del bag, desde timing_origin si está disponible; es un reconteo separado, no un segundo reloj físico independiente. El resumen del observador original obtiene los tiempos del estado del controlador.",
+  "coverage_note": "La ausencia de colisiones se comprueba en los flags recibidos y guardados; no se supone que el bag contenga cada publicación original. La comprobación geométrica evalúa centros de odometría, no toda la carrocería.",
+  "core_sha256_for_recount": "2b3f12af9bae0be0b9cf35e0718a90528e5bd57fe414ff73a06b57ea08f8426c",
+  "map": {
+    "yaml": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/results/Sakhir_obstacles_5.yaml",
+    "image": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/results/Sakhir_obstacles_5.png",
+    "resolution": 0.05695,
+    "origin": [
+      -26.16613846019197,
+      -46.60161969973893,
+      0.0
+    ],
+    "free_threshold": 0.196,
+    "shape": [
+      2000,
+      2000
+    ]
+  },
+  "audited_map_sha256": "836f46a0d34577910dcf937459e48e2bc84f9b769af71f14b4f443fc753e649f",
+  "obstacle_coverage": [
+    {
+      "lap": 1,
+      "passed_all_five_in_order": true,
+      "events": [
+        {
+          "obstacle": "O1",
+          "stamp": 4.17
+        },
+        {
+          "obstacle": "O2",
+          "stamp": 19.04
+        },
+        {
+          "obstacle": "O3",
+          "stamp": 35.97
+        },
+        {
+          "obstacle": "O4",
+          "stamp": 53.28
+        },
+        {
+          "obstacle": "O5",
+          "stamp": 68.85
+        }
+      ]
+    },
+    {
+      "lap": 2,
+      "passed_all_five_in_order": true,
+      "events": [
+        {
+          "obstacle": "O1",
+          "stamp": 88.55
+        },
+        {
+          "obstacle": "O2",
+          "stamp": 103.38
+        },
+        {
+          "obstacle": "O3",
+          "stamp": 120.31
+        },
+        {
+          "obstacle": "O4",
+          "stamp": 137.69
+        },
+        {
+          "obstacle": "O5",
+          "stamp": 153.2
+        }
+      ]
+    },
+    {
+      "lap": 3,
+      "passed_all_five_in_order": true,
+      "events": [
+        {
+          "obstacle": "O1",
+          "stamp": 172.92
+        },
+        {
+          "obstacle": "O2",
+          "stamp": 187.74
+        },
+        {
+          "obstacle": "O3",
+          "stamp": 204.6
+        },
+        {
+          "obstacle": "O4",
+          "stamp": 222.02
+        },
+        {
+          "obstacle": "O5",
+          "stamp": 237.65
+        }
+      ]
+    },
+    {
+      "lap": 4,
+      "passed_all_five_in_order": true,
+      "events": [
+        {
+          "obstacle": "O1",
+          "stamp": 257.35
+        },
+        {
+          "obstacle": "O2",
+          "stamp": 272.15
+        },
+        {
+          "obstacle": "O3",
+          "stamp": 289.02
+        },
+        {
+          "obstacle": "O4",
+          "stamp": 306.41
+        },
+        {
+          "obstacle": "O5",
+          "stamp": 321.96
+        }
+      ]
+    },
+    {
+      "lap": 5,
+      "passed_all_five_in_order": true,
+      "events": [
+        {
+          "obstacle": "O1",
+          "stamp": 341.63
+        },
+        {
+          "obstacle": "O2",
+          "stamp": 356.57
+        },
+        {
+          "obstacle": "O3",
+          "stamp": 373.43
+        },
+        {
+          "obstacle": "O4",
+          "stamp": 390.84
+        },
+        {
+          "obstacle": "O5",
+          "stamp": 406.45
+        }
+      ]
+    },
+    {
+      "lap": 6,
+      "passed_all_five_in_order": true,
+      "events": [
+        {
+          "obstacle": "O1",
+          "stamp": 426.18
+        },
+        {
+          "obstacle": "O2",
+          "stamp": 440.97
+        },
+        {
+          "obstacle": "O3",
+          "stamp": 457.86
+        },
+        {
+          "obstacle": "O4",
+          "stamp": 475.24
+        },
+        {
+          "obstacle": "O5",
+          "stamp": 490.83
+        }
+      ]
+    },
+    {
+      "lap": 7,
+      "passed_all_five_in_order": true,
+      "events": [
+        {
+          "obstacle": "O1",
+          "stamp": 510.54
+        },
+        {
+          "obstacle": "O2",
+          "stamp": 525.45
+        },
+        {
+          "obstacle": "O3",
+          "stamp": 542.36
+        },
+        {
+          "obstacle": "O4",
+          "stamp": 559.75
+        },
+        {
+          "obstacle": "O5",
+          "stamp": 575.33
+        }
+      ]
+    },
+    {
+      "lap": 8,
+      "passed_all_five_in_order": true,
+      "events": [
+        {
+          "obstacle": "O1",
+          "stamp": 595.05
+        },
+        {
+          "obstacle": "O2",
+          "stamp": 609.89
+        },
+        {
+          "obstacle": "O3",
+          "stamp": 626.77
+        },
+        {
+          "obstacle": "O4",
+          "stamp": 644.2
+        },
+        {
+          "obstacle": "O5",
+          "stamp": 659.79
+        }
+      ]
+    },
+    {
+      "lap": 9,
+      "passed_all_five_in_order": true,
+      "events": [
+        {
+          "obstacle": "O1",
+          "stamp": 679.52
+        },
+        {
+          "obstacle": "O2",
+          "stamp": 694.31
+        },
+        {
+          "obstacle": "O3",
+          "stamp": 711.249999999
+        },
+        {
+          "obstacle": "O4",
+          "stamp": 728.659999999
+        },
+        {
+          "obstacle": "O5",
+          "stamp": 744.269999999
+        }
+      ]
+    },
+    {
+      "lap": 10,
+      "passed_all_five_in_order": true,
+      "events": [
+        {
+          "obstacle": "O1",
+          "stamp": 763.969999999
+        },
+        {
+          "obstacle": "O2",
+          "stamp": 778.799999999
+        },
+        {
+          "obstacle": "O3",
+          "stamp": 795.679999999
+        },
+        {
+          "obstacle": "O4",
+          "stamp": 813.049999999
+        },
+        {
+          "obstacle": "O5",
+          "stamp": 828.569999999
+        }
+      ]
+    }
+  ],
+  "coverage_radius_m": 3.0
+}

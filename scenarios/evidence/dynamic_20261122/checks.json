@@ -1,0 +1,1103 @@
+{
+  "passed": true,
+  "checks": {
+    "native_ros_runtime": true,
+    "no_physics_overrides": true,
+    "clock_monotonic": true,
+    "recorded_numbers_finite": true,
+    "manifest_completed_and_closed": true,
+    "summary_completed": true,
+    "ego_each_actual_lap_visits_five_track_sectors_in_order": true,
+    "ego_at_least_ten_real_laps": true,
+    "ego_all_actual_laps_csv_and_summary_agree": true,
+    "ego_all_actual_laps_odom_recount_agrees": true,
+    "ego_recount_not_invalid": true,
+    "ego_lap_indices_sequential": true,
+    "ego_lap_times_positive": true,
+    "ego_timing_origin_present_consistent": true,
+    "ego_collision_messages_present": true,
+    "ego_no_collision_flags": true,
+    "ego_scan_evidence_present": true,
+    "ego_command_speed_within_limit": true,
+    "ego_command_steer_within_limit": true,
+    "ego_all_odom_centres_on_original_track": true,
+    "ego_last_command_zero": true,
+    "ego_physically_stopped": true,
+    "ego_first_ten_not_extras_used_for_target": true,
+    "opp_each_actual_lap_visits_five_track_sectors_in_order": true,
+    "opp_at_least_ten_real_laps": true,
+    "opp_all_actual_laps_csv_and_summary_agree": true,
+    "opp_all_actual_laps_odom_recount_agrees": true,
+    "opp_recount_not_invalid": true,
+    "opp_lap_indices_sequential": true,
+    "opp_lap_times_positive": true,
+    "opp_timing_origin_present_consistent": true,
+    "opp_collision_messages_present": true,
+    "opp_no_collision_flags": true,
+    "opp_scan_evidence_present": true,
+    "opp_command_speed_within_limit": true,
+    "opp_command_steer_within_limit": true,
+    "opp_all_odom_centres_on_original_track": true,
+    "opp_last_command_zero": true,
+    "opp_physically_stopped": true,
+    "opp_first_ten_not_extras_used_for_target": true,
+    "initial_centre_gap_five_metres": true,
+    "initial_poses_match_config": true,
+    "synchronised_paired_odometry_present": true,
+    "at_least_one_measured_ego_overtake": true,
+    "observer_reports_measured_overtake": true,
+    "both_physically_stopped_four_sim_seconds": true,
+    "dynamic_map_matches_official_original_image": true,
+    "map_image_hash_unchanged_since_run": true,
+    "map_yaml_hash_unchanged_since_run": true
+  },
+  "check_count": 49,
+  "run": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/work/part2_dynamic_ros_20261122/ros_lockstep_02/run",
+  "vehicles": {
+    "ego": {
+      "csv_times": [
+        96.88,
+        93.17000000000002,
+        93.15999999999997,
+        93.72000000000003,
+        96.75999999999999,
+        93.23999999999995,
+        93.0100000000001,
+        93.87999999899989,
+        97.1400000000001,
+        93.1099999999999,
+        93.30999999999995,
+        93.60000000000014,
+        97.30999999999995
+      ],
+      "csv_indices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "origins": [
+        0.0
+      ],
+      "positive_flags": 0,
+      "max_command_speed": 5.0,
+      "max_command_steer": 0.4189000129699707,
+      "last_command_speed": 0.0,
+      "final_measured_vx": 1.621200170343888e-38,
+      "max_measured_vx": 4.999999999999991,
+      "first_pose": [
+        0.0,
+        0.5,
+        15.0,
+        -1.5707963267948963,
+        0.0
+      ],
+      "actual_lap_count": 13,
+      "target_lap_count": 10,
+      "extra_lap_count": 3,
+      "first_ten_laps": [
+        96.88,
+        93.17000000000002,
+        93.15999999999997,
+        93.72000000000003,
+        96.75999999999999,
+        93.23999999999995,
+        93.0100000000001,
+        93.87999999899989,
+        97.1400000000001,
+        93.1099999999999
+      ],
+      "extra_laps": [
+        93.30999999999995,
+        93.60000000000014,
+        97.30999999999995
+      ],
+      "best_first_ten": 93.0100000000001,
+      "recount_times": [
+        96.88,
+        93.17000000000002,
+        93.15999999999997,
+        93.72000000000003,
+        96.75999999999999,
+        93.23999999999995,
+        93.0100000000001,
+        93.87999999899989,
+        97.1400000000001,
+        93.1099999999999,
+        93.30999999999995,
+        93.60000000000014,
+        97.30999999999995
+      ],
+      "recount_deltas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "odom_positions_checked": 125033,
+      "outside_track": 0,
+      "full_route_sector_coverage": [
+        {
+          "lap": 1,
+          "events": [
+            {
+              "stamp": 6.15,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 24.72,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 43.34,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 62.62,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 79.59,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 2,
+          "events": [
+            {
+              "stamp": 101.43,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 117.66,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 136.49,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 155.87,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 172.84,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 3,
+          "events": [
+            {
+              "stamp": 194.59,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 210.82,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 229.58,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 248.93,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 265.93,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 4,
+          "events": [
+            {
+              "stamp": 287.76,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 303.98,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 322.86,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 342.26,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 359.34,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 5,
+          "events": [
+            {
+              "stamp": 383.21,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 401.66,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 420.27,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 439.47,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 456.41,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 6,
+          "events": [
+            {
+              "stamp": 478.24,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 494.49,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 513.31,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 532.71,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 549.66,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 7,
+          "events": [
+            {
+              "stamp": 571.47,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 587.72,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 606.41,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 625.64,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 642.67,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 8,
+          "events": [
+            {
+              "stamp": 664.48,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 680.76,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 699.42,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 718.669999999,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 735.669999999,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 9,
+          "events": [
+            {
+              "stamp": 760.289999999,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 778.779999999,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 797.419999999,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 816.669999999,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 833.719999999,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 10,
+          "events": [
+            {
+              "stamp": 855.509999999,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 871.769999999,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 890.429999999,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 909.729999999,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 926.789999999,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 11,
+          "events": [
+            {
+              "stamp": 948.619999999,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 964.849999999,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 983.639999999,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 1003.009999999,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 1020.099999999,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 12,
+          "events": [
+            {
+              "stamp": 1041.919999999,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 1058.179999999,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 1076.909999999,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 1096.249999999,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 1113.319999999,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 13,
+          "events": [
+            {
+              "stamp": 1137.359999999,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 1155.979999999,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 1174.669999999,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 1193.969999999,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 1211.029999999,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        }
+      ]
+    },
+    "opp": {
+      "csv_times": [
+        124.87,
+        125.50999999999999,
+        125.51999999999998,
+        126.03000000000003,
+        125.51000000000005,
+        125.53999999899997,
+        126.02999999999997,
+        125.50999999999999,
+        125.51999999999998,
+        125.99000000000001
+      ],
+      "csv_indices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "origins": [
+        0.0
+      ],
+      "positive_flags": 0,
+      "max_command_speed": 3.5,
+      "max_command_steer": 0.4189000129699707,
+      "last_command_speed": 0.0,
+      "final_measured_vx": 9.888856202658267e-40,
+      "max_measured_vx": 3.4999999999999956,
+      "first_pose": [
+        0.0,
+        0.5,
+        10.0,
+        -1.5707963267948963,
+        0.0
+      ],
+      "actual_lap_count": 10,
+      "target_lap_count": 10,
+      "extra_lap_count": 0,
+      "first_ten_laps": [
+        124.87,
+        125.50999999999999,
+        125.51999999999998,
+        126.03000000000003,
+        125.51000000000005,
+        125.53999999899997,
+        126.02999999999997,
+        125.50999999999999,
+        125.51999999999998,
+        125.99000000000001
+      ],
+      "extra_laps": [],
+      "best_first_ten": 124.87,
+      "recount_times": [
+        124.87,
+        125.50999999999999,
+        125.51999999999998,
+        126.03000000000003,
+        125.51000000000005,
+        125.53999999899997,
+        126.02999999999997,
+        125.50999999999999,
+        125.51999999999998,
+        126.02999999999997
+      ],
+      "recount_deltas": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.03999999999996362
+      ],
+      "odom_positions_checked": 124837,
+      "outside_track": 0,
+      "full_route_sector_coverage": [
+        {
+          "lap": 1,
+          "events": [
+            {
+              "stamp": 5.31,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 28.33,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 53.2,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 78.79,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 101.3,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 2,
+          "events": [
+            {
+              "stamp": 131.36,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 153.87,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 178.72,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 204.31,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 226.82,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 3,
+          "events": [
+            {
+              "stamp": 256.88,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 279.38,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 304.23,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 329.83,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 352.33,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 4,
+          "events": [
+            {
+              "stamp": 382.39,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 405.4,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 430.25,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 455.84,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 478.36,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 5,
+          "events": [
+            {
+              "stamp": 508.42,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 530.93,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 555.81,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 581.38,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 603.88,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 6,
+          "events": [
+            {
+              "stamp": 633.94,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 656.45,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 681.32,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 706.91,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 729.419999999,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 7,
+          "events": [
+            {
+              "stamp": 759.469999999,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 782.479999999,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 807.349999999,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 832.929999999,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 855.439999999,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 8,
+          "events": [
+            {
+              "stamp": 885.499999999,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 907.999999999,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 932.849999999,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 958.439999999,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 980.949999999,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 9,
+          "events": [
+            {
+              "stamp": 1011.009999999,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 1033.519999999,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 1058.379999999,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 1083.959999999,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 1106.469999999,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        },
+        {
+          "lap": 10,
+          "events": [
+            {
+              "stamp": 1136.529999999,
+              "sector_reference": "O1"
+            },
+            {
+              "stamp": 1159.529999999,
+              "sector_reference": "O2"
+            },
+            {
+              "stamp": 1184.389999999,
+              "sector_reference": "O3"
+            },
+            {
+              "stamp": 1209.959999999,
+              "sector_reference": "O4"
+            },
+            {
+              "stamp": 1232.479999999,
+              "sector_reference": "O5"
+            }
+          ],
+          "passed_all_five_sectors_in_order": true
+        }
+      ]
+    }
+  },
+  "bag_messages": {
+    "/clock": 126115,
+    "/scan": 1251,
+    "/ego_racecar/odom": 125033,
+    "/opp_scan": 1249,
+    "/opp_racecar/odom": 124837,
+    "/drive": 126201,
+    "/daniel_dynamic/ego/status": 126032,
+    "/daniel_dynamic/ego/timing_origin": 1,
+    "/opp_drive": 126195,
+    "/daniel_dynamic/opp/timing_origin": 1,
+    "/daniel_dynamic/opp/status": 126031,
+    "/daniel_gap/collision": 126033,
+    "/daniel_gap/opp_collision": 126032
+  },
+  "initial_centre_gap": 5.0,
+  "paired_samples": 124752,
+  "overtakes_recounted": [
+    {
+      "before": {
+        "sim_time": 16.78,
+        "ego": [
+          9.005755553515117,
+          -35.15714277657407,
+          0.4928309169085417
+        ],
+        "opp": [
+          9.59885962547138,
+          -34.10437807665065,
+          0.4788728149981457
+        ],
+        "centre_distance": 1.2083401646787852,
+        "relative_longitudinal": -1.0114806278164208,
+        "relative_lateral": -0.6610543798569468,
+        "heading_cosine": 0.9999025872771103
+      },
+      "ahead": {
+        "sim_time": 18.16,
+        "ego": [
+          14.979501687063863,
+          -31.71846261306473,
+          0.5299145238056905
+        ],
+        "opp": [
+          13.782872097421981,
+          -31.73817767468474,
+          0.5633405674345808
+        ],
+        "centre_distance": 1.1967919862955212,
+        "relative_longitudinal": 1.0222496173627489,
+        "relative_lateral": -0.6223477952583206,
+        "heading_cosine": 0.9994414018167296
+      },
+      "confirmed": {
+        "sim_time": 18.66,
+        "ego": [
+          17.145858203938698,
+          -30.470734135812723,
+          0.5298463669662742
+        ],
+        "opp": [
+          14.648014527376295,
+          -31.610648538260527,
+          0.13800987071437895
+        ],
+        "centre_distance": 2.745656183401467,
+        "relative_longitudinal": 2.6309140506377724,
+        "relative_lateral": 0.7854420001549831,
+        "heading_cosine": 0.9242092859219032
+      },
+      "criterion": "nearby same-direction behind<-1m to ahead>1m sustained0.5s"
+    },
+    {
+      "before": {
+        "sim_time": 393.42,
+        "ego": [
+          7.681956010739863,
+          -35.822938818163756,
+          0.4922670594407418
+        ],
+        "opp": [
+          8.276108382158956,
+          -34.78046530822939,
+          0.47277961351369135
+        ],
+        "centre_distance": 1.1999033541822492,
+        "relative_longitudinal": -1.003681021342311,
+        "relative_lateral": -0.657565560818895,
+        "heading_cosine": 0.9998101257346305
+      },
+      "ahead": {
+        "sim_time": 394.79,
+        "ego": [
+          13.628644227675935,
+          -32.44229750425906,
+          0.5165064778321192
+        ],
+        "opp": [
+          12.439962831389352,
+          -32.46124569676942,
+          0.5437611077274833
+        ],
+        "centre_distance": 1.1888324086586932,
+        "relative_longitudinal": 1.0270395735394624,
+        "relative_lateral": -0.5987588915925255,
+        "heading_cosine": 0.9996286155646433
+      },
+      "confirmed": {
+        "sim_time": 395.29,
+        "ego": [
+          15.7970587267706,
+          -31.198150787370302,
+          0.5182843381351717
+        ],
+        "opp": [
+          13.295036412264725,
+          -32.350151001758356,
+          0.14973100250964105
+        ],
+        "centre_distance": 2.7544909069073835,
+        "relative_longitudinal": 2.6458741378594057,
+        "relative_lateral": 0.7658787128796607,
+        "heading_cosine": 0.9328495059814522
+      },
+      "criterion": "nearby same-direction behind<-1m to ahead>1m sustained0.5s"
+    },
+    {
+      "before": {
+        "sim_time": 770.619999999,
+        "ego": [
+          8.039264675390058,
+          -35.6435647294984,
+          0.498960192999824
+        ],
+        "opp": [
+          8.63027618535466,
+          -34.60266105571396,
+          0.47801528764753104
+        ],
+        "centre_distance": 1.196985824063337,
+        "relative_longitudinal": -1.0035990941472015,
+        "relative_lateral": -0.6523526049886696,
+        "heading_cosine": 0.999780663488445
+      },
+      "ahead": {
+        "sim_time": 771.989999999,
+        "ego": [
+          13.981296265669538,
+          -32.25193532205557,
+          0.530867833933925
+        ],
+        "opp": [
+          12.793127738393904,
+          -32.26898757566075,
+          0.5665225698849407
+        ],
+        "centre_distance": 1.188290885499575,
+        "relative_longitudinal": 1.0116957901762147,
+        "relative_lateral": -0.6233031820078324,
+        "heading_cosine": 0.9993644372368818
+      },
+      "confirmed": {
+        "sim_time": 772.489999999,
+        "ego": [
+          16.148933810065806,
+          -31.006435697443504,
+          0.5246907954246041
+        ],
+        "opp": [
+          13.656845513632458,
+          -32.139820137986455,
+          0.13920430919063168
+        ],
+        "centre_distance": 2.737711520099392,
+        "relative_longitudinal": 2.62524456317806,
+        "relative_lateral": 0.7766307686339502,
+        "heading_cosine": 0.926615618658161
+      },
+      "criterion": "nearby same-direction behind<-1m to ahead>1m sustained0.5s"
+    },
+    {
+      "before": {
+        "sim_time": 1148.139999999,
+        "ego": [
+          9.48763902014601,
+          -34.9369270423235,
+          0.49991709411878515
+        ],
+        "opp": [
+          10.06971716817542,
+          -33.86411297584619,
+          0.47038040189298064
+        ],
+        "centre_distance": 1.2205511016114485,
+        "relative_longitudinal": -1.005088692536249,
+        "relative_lateral": -0.6924895030111965,
+        "heading_cosine": 0.9995638236181736
+      },
+      "ahead": {
+        "sim_time": 1149.529999999,
+        "ego": [
+          15.473185752136002,
+          -31.44162796802907,
+          0.5250777318862248
+        ],
+        "opp": [
+          14.28040051992831,
+          -31.473870628965987,
+          0.5818559577878152
+        ],
+        "centre_distance": 1.193220934846959,
+        "relative_longitudinal": 1.014225159795429,
+        "relative_lateral": -0.6285885177085141,
+        "heading_cosine": 0.9983885495132565
+      },
+      "confirmed": {
+        "sim_time": 1150.029999999,
+        "ego": [
+          17.62880737344182,
+          -30.175473076967407,
+          0.5305032121941841
+        ],
+        "opp": [
+          15.135085941434992,
+          -31.32086533264621,
+          0.15208987867390786
+        ],
+        "centre_distance": 2.7441884045777836,
+        "relative_longitudinal": 2.6384671922224485,
+        "relative_lateral": 0.7543612366664574,
+        "heading_cosine": 0.9292519934437855
+      },
+      "criterion": "nearby same-direction behind<-1m to ahead>1m sustained0.5s"
+    }
+  ],
+  "both_stopped_sim_seconds_recounted": 3.980000000000018,
+  "minimum_centre_separation": 0.5252724497139849,
+  "finish_protocol": "both continue unchanged FTG until each has at least ten full laps; all extra laps retained, then simultaneous zero-speed commands and four measured stopped simulation seconds",
+  "map": {
+    "yaml": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/results/Sakhir_map.yaml",
+    "image": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/results/Sakhir_map.png",
+    "resolution": 0.05695,
+    "origin": [
+      -26.16613846019197,
+      -46.60161969973893,
+      0.0
+    ],
+    "free_threshold": 0.196,
+    "shape": [
+      2000,
+      2000
+    ]
+  },
+  "lap_tolerance_seconds": 0.1,
+  "sector_reference_note": "Five coordinates from the static scenario are measurement-only track-sector references; no obstacles are inserted into the original dynamic map. Each complete actual lap must pass them in order within 3 metres.",
+  "auditor_sha256": "c7ee51ccdf381dde16c54c415066b73ccd3140d6cf10c07448ed3f157812ebf3",
+  "scope": "Recount uses the same LapCounter on separately read received DDS odometry; simulation clock, not independent physical time. Original-map geometry checks vehicle centres; no-collision claim uses both complete received flag streams. Every actual extra lap remains explicit."
+}

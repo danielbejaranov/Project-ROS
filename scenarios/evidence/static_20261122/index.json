@@ -1,0 +1,36 @@
+{
+  "scenario": "static",
+  "evidence_type": "compact snapshots copied from a closed native ROS run; bags and video remain local",
+  "source_run": "/home/danielbejaranov/Documents/Codex/2026-11-10/pod/outputs/Project-ROS/ros2_validation/mis_pruebas/part2_static_lockstep_01",
+  "files": [
+    {
+      "source_relative_to_run": "checks_static.json",
+      "file": "checks.json",
+      "sha256": "b4dbd27b1fce419755b62891024c385f05fac949a2adcc3f58d5fbe41143f491"
+    },
+    {
+      "source_relative_to_run": "run/summary_ros.json",
+      "file": "summary.json",
+      "sha256": "9287594953e3aa708565638ed3aa6fb9ee87247ca63dab621d9a9ee0af058e99"
+    },
+    {
+      "source_relative_to_run": "run/laps_ros.csv",
+      "file": "laps_ros.csv",
+      "sha256": "4089133f0dd6024ec2bb9b1fbce6c796ab6d0944be1261e2fb4979fd70f8aa18"
+    },
+    {
+      "source_relative_to_run": "manifest.json",
+      "file": "manifest.json",
+      "sha256": "058208e852249c01e5e689026bd8a39f9102dc3609cc4d04b46b68e5f962c5b0"
+    },
+    {
+      "source_relative_to_run": "static_provenance.json",
+      "file": "source_provenance.json",
+      "sha256": "1e4796d9cab81f1dca23b20b640cc1c5e16c4a5c82d9d286630849b795c423d8"
+    },
+    {
+      "file": "video_qa.json",
+      "sha256": "41128f84f626bf25f50bdc12940ecc9ba5773e4ec06b01aca9eb8df115e3a5e4"
+    }
+  ]
+}
