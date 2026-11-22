@@ -94,3 +94,7 @@ laps.csv
 *.pem
 .env
 .env.*
+
+# Mapas derivados del material docente
+/results/Sakhir_obstacles*
+/scenarios/runs/

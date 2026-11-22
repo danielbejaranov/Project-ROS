@@ -1,0 +1,32 @@
+scenario: Sakhir / parte 2 / cinco obstáculos estáticos
+source_image_sha256: f3746a4d48a72ccc3cad020bc383e370dd3a915009c87d4d6041af06e7de85eb
+start_xy:
+- 0.5
+- 15.0
+vehicle_clearance_radius: 0.35
+obstacles:
+- id: O1
+  x: -0.28236346019197
+  y: -10.69464469973893
+  radius: 0.35
+  heading: -1.61097
+- id: O2
+  x: 46.24578653980802
+  y: -14.339444699738934
+  radius: 0.35
+  heading: 0.49712
+- id: O3
+  x: 16.176186539808032
+  y: 6.048655300261068
+  radius: 0.35
+  heading: 1.52548
+- id: O4
+  x: 31.21098653980803
+  y: 18.805455300261073
+  radius: 0.35
+  heading: 0.8607
+- id: O5
+  x: 34.741886539808036
+  y: 54.627005300261075
+  radius: 0.35
+  heading: 2.94736

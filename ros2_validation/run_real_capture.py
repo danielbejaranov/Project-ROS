@@ -37,7 +37,7 @@ def fraction(value: str) -> float:
     return number
 
 
-def arguments() -> argparse.Namespace:
+def arguments(defaults=None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", required=True, type=Path)
     parser.add_argument("--mode", choices=("lockstep", "wall"), default="lockstep")
@@ -55,10 +55,12 @@ def arguments() -> argparse.Namespace:
     parser.add_argument("--map-stem", type=Path,
                         default=Path(os.environ.get('DANIEL_F1TENTH_MAP',
                                      str(Path(__file__).resolve().parents[1] / 'results/Sakhir_map'))),
-                        help="Mapa sin extensión; por defecto results/Sakhir_map del clon")
+                        help="Mapa sin extensión; el escenario puede establecer su propio valor predeterminado")
     parser.add_argument("--timeout-wall", type=positive,
-                        help="default: 600 seconds in lockstep; 1200 seconds in wall mode")
+                        help="Timeout real; el grabador general usa 600 s en lockstep o 1200 s en wall. Los escenarios pueden fijar otro valor.")
     parser.add_argument("--startup-seconds", type=positive, default=8.)
+    if defaults:
+        parser.set_defaults(**defaults)
     args = parser.parse_args()
     if not re.fullmatch(r":\d+", args.display):
         parser.error("--display must name a private local display, e.g. :109")

@@ -10,6 +10,7 @@ from ackermann_msgs.msg import AckermannDriveStamped
 from std_msgs.msg import String, Bool, Float64
 from .core import GapController, LapCounter
 from .fast_core import FastGapController
+from .obstacle_core import MidpointGapController
 import math
 
 class GapNode(Node):
@@ -24,15 +25,16 @@ class GapNode(Node):
         p=lambda k:self.get_parameter(k).value
         if not 0. < p('max_speed') <= 20.:
             raise ValueError('max_speed debe estar entre 0 y 20 m/s (límite físico)')
-        self.fast_profile=p('controller_profile') == 'fast'
+        self.fast_profile=p('controller_profile') in ('fast', 'obstacles')
         if self.fast_profile:
-            self.control=FastGapController(p('max_speed'), gain=p('gain'),
+            controller_class = MidpointGapController if p('controller_profile') == 'obstacles' else FastGapController
+            self.control=controller_class(p('max_speed'), gain=p('gain'),
                 lateral_accel=p('lateral_accel'), brake_accel=p('brake_accel'),
                 smooth=p('smooth'), alpha=p('alpha'))
         elif p('controller_profile') == 'conservative':
             self.control=GapController(p('max_speed'))
         else:
-            raise ValueError('controller_profile debe ser conservative o fast')
+            raise ValueError('controller_profile debe ser conservative, fast u obstacles')
         self.counter=LapCounter(p('start_x'),p('start_y'),p('start_yaw'))
         self.target=p('target_laps'); self.last_scan=None; self.last_scan_stamp=None; self.halted=False
         self.finished=False
@@ -43,7 +45,7 @@ class GapNode(Node):
             QoSProfile(depth=1,durability=DurabilityPolicy.TRANSIENT_LOCAL))
         self.create_subscription(LaserScan,p('scan_topic'),self.scan,qos_profile_sensor_data)
         self.create_subscription(Odometry,p('odom_topic'),self.odom,qos_profile_sensor_data)
-        # El bridge del curso NO publica colisión. Requiere detector externo para certificarla.
+        # El bridge instrumentado publica el flag de colisión del motor para este vehículo.
         self.create_subscription(Bool,'/daniel_gap/collision',self.collision,10)
         self.create_timer(.1,self.watchdog)
         path=Path(p('csv_path')).expanduser(); path.parent.mkdir(parents=True,exist_ok=True)
