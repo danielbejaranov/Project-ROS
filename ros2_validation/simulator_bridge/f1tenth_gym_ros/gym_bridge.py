@@ -51,6 +51,8 @@ class GymBridge(Node):
         self.last_sensor_wall = 0.0
         self.clock_pub = self.create_publisher(Clock, '/clock', 10)
         self.collision_pub = self.create_publisher(Bool, '/daniel_gap/collision', 10)
+        # Observability only: each flag is the unchanged simulator observation.
+        self.opp_collision_pub = self.create_publisher(Bool, '/daniel_gap/opp_collision', 10)
 
         self.declare_parameter('ego_namespace', '')  # Tipo 'str' con valor predeterminado vacío
         self.declare_parameter('ego_odom_topic', '')  # Tipo 'str' con valor predeterminado vacío
@@ -241,7 +243,8 @@ class GymBridge(Node):
             self.ego_steer = 0.0
 
     def drive_timer_callback(self):
-        if self.lockstep and not self.ego_drive_published:
+        if self.lockstep and not (self.ego_drive_published and
+                                 (not self.has_opp or self.opp_drive_published)):
             # Re-publicar estado inicial o perdido sin avanzar la física.
             if time.monotonic() - self.last_sensor_wall > 0.1:
                 self.timer_callback(force=True)
@@ -253,9 +256,13 @@ class GymBridge(Node):
         self._update_sim_state()
         self.sim_seconds += 0.01
         self.collision_pub.publish(Bool(data=bool(self.obs['collisions'][0])))
+        if self.has_opp:
+            self.opp_collision_pub.publish(Bool(data=bool(self.obs['collisions'][1])))
         if self.lockstep:
             # El siguiente paso requiere una orden que haya viajado por /drive.
             self.ego_drive_published = False
+            if self.has_opp:
+                self.opp_drive_published = False
             self.timer_callback(force=True)
 
     def timer_callback(self, force=False):
