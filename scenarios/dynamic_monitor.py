@@ -18,16 +18,26 @@ from std_msgs.msg import Bool, String, Float64
 from rosgraph_msgs.msg import Clock
 from visualization_msgs.msg import Marker
 import rosbag2_py
+PROJECT=Path(__file__).resolve().parents[1]
+if str(PROJECT) not in sys.path:sys.path.insert(0,str(PROJECT))
+from ros2_validation.recording_policy import (
+    TELEMETRY_COLUMNS, positive_stride, selected_scan, stamp_ns,
+    bag_timestamp_ns, telemetry_row, recording_metadata, console_due, progress_line,
+)
 from dynamic_controller import TOPICS
 from dynamic_metrics import OvertakeDetector
 
 class Monitor(Node):
-    def __init__(self,out,timeout):
+    def __init__(self,out,timeout,scan_stride=1):
+        self.scan_stride=positive_stride(scan_stride)
         super().__init__('daniel_dynamic_monitor')
         self.out=out; out.mkdir(parents=True,exist_ok=True)
-        self.started_wall=time.monotonic(); self.timeout=timeout; self.sim=0.
+        self.started_wall=time.monotonic(); self.timeout=timeout; self.sim=0.; self.clock_ns=0
         self.finished=False; self.reason=None; self.stopped_since=None
-        self.counts={}; self.states={n:None for n in TOPICS}; self.origins={n:None for n in TOPICS}
+        self.counts={}; self.stored_counts={}; self.states={n:None for n in TOPICS}; self.origins={n:None for n in TOPICS}
+        self.scan_topics=frozenset(t['scan'] for t in TOPICS.values())
+        self.header_timestamp_topics=self.scan_topics | frozenset(t['odom'] for t in TOPICS.values())
+        self.last_console_sim=None
         self.collisions={n:False for n in TOPICS}; self.poses={n:None for n in TOPICS}
         self.initial_poses={n:None for n in TOPICS}; self.commands={n:(0.,0.) for n in TOPICS}
         self.actual_speed={n:None for n in TOPICS}; self.paths={n:PathMsg() for n in TOPICS}
@@ -39,7 +49,7 @@ class Monitor(Node):
         specs=[('/clock',Clock,'rosgraph_msgs/msg/Clock',10)]
         for name,topics in TOPICS.items():
             self.files[name]=(out/f'telemetry_{name}.csv').open('w',newline='')
-            self.csv[name]=csv.writer(self.files[name]); self.csv[name].writerow(['sim_time','x','y','yaw','measured_vx','command_speed','laps'])
+            self.csv[name]=csv.writer(self.files[name]); self.csv[name].writerow(TELEMETRY_COLUMNS)
             self.pathpub[name]=self.create_publisher(PathMsg,f'/daniel_dynamic/{name}/path',5)
             specs.extend([(topics['scan'],LaserScan,'sensor_msgs/msg/LaserScan',qos_profile_sensor_data),
                 (topics['odom'],Odometry,'nav_msgs/msg/Odometry',qos_profile_sensor_data),
@@ -49,15 +59,21 @@ class Monitor(Node):
                 (f'/daniel_dynamic/{name}/timing_origin',Float64,'std_msgs/msg/Float64',QoSProfile(depth=1,durability=DurabilityPolicy.TRANSIENT_LOCAL))])
         for topic,cls,typename,qos in specs:
             self.counts[topic]=0
+            self.stored_counts[topic]=0
             self.writer.create_topic(rosbag2_py.TopicMetadata(name=topic,type=typename,serialization_format='cdr'))
             self.create_subscription(cls,topic,lambda msg,t=topic:self.receive(t,msg),qos)
         self.create_timer(.1,self.display)
+        profile=recording_metadata(self.scan_stride,self.scan_topics,self.header_timestamp_topics)
+        print(f"RECORDING profile={profile['recording_profile']} scan_stride={self.scan_stride} "
+              "scans=/scan,/opp_scan velocity=measured_vx,measured_vy[m/s] command=command_speed[m/s]",flush=True)
 
     def write_message(self,topic,msg):
         encoded=serialize_message(msg)
+        timestamp=bag_timestamp_ns(topic,msg,self.clock_ns,self.header_timestamp_topics)
         for attempt in range(20):
             try:
-                self.writer.write(topic,encoded,max(0,round(self.sim*1e9)))
+                self.writer.write(topic,encoded,timestamp)
+                self.stored_counts[topic]+=1
                 return
             except RuntimeError as error:
                 if 'database is locked' not in str(error) or attempt==19:
@@ -66,10 +82,10 @@ class Monitor(Node):
 
     def receive(self,topic,msg):
         self.counts[topic]+=1
-        is_scan=topic in [t['scan'] for t in TOPICS.values()]
-        if not is_scan or self.counts[topic]%100==1:
+        if topic=='/clock':
+            self.clock_ns=stamp_ns(msg.clock);self.sim=self.clock_ns/1e9
+        if topic not in self.scan_topics or selected_scan(self.counts[topic],self.scan_stride):
             self.write_message(topic,msg)
-        if topic=='/clock':self.sim=msg.clock.sec+msg.clock.nanosec*1e-9
         for name,topics in TOPICS.items():
             if topic==topics['drive']:self.commands[name]=(msg.drive.steering_angle,msg.drive.speed)
             elif topic==topics['collision']:self.collisions[name]|=bool(msg.data)
@@ -88,7 +104,7 @@ class Monitor(Node):
                 self.actual_speed[name]=float(msg.twist.twist.linear.x)
                 if self.counts[topic]%10==1:
                     laps=len(self.states[name]['laps']) if self.states[name] else 0
-                    self.csv[name].writerow([stamp,p.x,p.y,yaw,self.actual_speed[name],self.commands[name][1],laps])
+                    self.csv[name].writerow(telemetry_row(msg,self.commands[name][1],laps))
                 if self.counts[topic]%50==1:
                     pose=PoseStamped(); pose.header=msg.header; pose.pose=msg.pose.pose
                     self.paths[name].header=msg.header;self.paths[name].poses.append(pose)
@@ -107,7 +123,20 @@ class Monitor(Node):
                 self.reason='completed';self.finished=True
         else:self.stopped_since=None
 
+    def console_progress(self,force=False):
+        if not any(self.poses.values()) or (not force and not console_due(self.sim,self.last_console_sim)):
+            return
+        self.last_console_sim=self.sim
+        for name,topics in TOPICS.items():
+            pose=self.poses[name]
+            if pose is None:continue
+            laps=len(self.states[name]['laps']) if self.states[name] else 0
+            print(progress_line(name,pose[0],laps,pose[1],pose[2],self.actual_speed[name],
+                                self.stored_counts[topics['scan']],self.counts[topics['scan']],
+                                self.collisions[name]),flush=True)
+
     def display(self):
+        self.console_progress()
         for name in TOPICS:self.pathpub[name].publish(self.paths[name])
         lines=['Daniel Bejarano | Sakhir original | ROS 2: dos vehiculos']
         for name in TOPICS:
@@ -136,22 +165,28 @@ class Monitor(Node):
         completed=self.reason=='completed' and bool(self.detector.events) and not any(self.collisions.values())
         result={'runtime':'native ROS 2 Humble / DDS','simulator':'unchanged F1TENTH Gym dynamics, two agents',
             'completed':completed,'reason':self.reason,'finish_protocol':'both continue unchanged FTG until each has at least ten full laps; all extra laps retained, then simultaneous zero-speed commands and four measured stopped simulation seconds','vehicles':self.states,'collisions':self.collisions,
-            'origins':self.origins,'received_messages':self.counts,'initial_poses':initial,
+            'origins':self.origins,'received_messages':self.counts,'stored_messages':self.stored_counts,'initial_poses':initial,
             'initial_centre_gap':gap,'overtakes':self.detector.events,'sim_seconds':self.sim,
             'stopped_since':self.stopped_since,'stopped_sim_seconds':None if self.stopped_since is None else self.sim-self.stopped_since,
             'final_measured_vx':self.actual_speed,'wall_seconds':time.monotonic()-self.started_wall,
-            'bag_scan_sampling':'1/100 per vehicle; all other received messages listed are written',
-            'coverage_note':'received DDS messages, not an assertion that every simulator publication reached this observer',
             'nodes':self.get_node_names_and_namespaces() if rclpy.ok() else [],
             'topics':self.get_topic_names_and_types() if rclpy.ok() else []}
+        result.update(recording_metadata(self.scan_stride,self.scan_topics,self.header_timestamp_topics))
         (self.out/'summary_dynamic.json').write_text(json.dumps(result,indent=2)+'\n')
         (self.out/'overtakes.json').write_text(json.dumps(self.detector.events,indent=2)+'\n')
         del self.writer
+        self.console_progress(force=True)
         print(json.dumps(result,indent=2),flush=True)
+        print(f"MONITOR_END reason={self.reason} summary_completed={completed} "
+              f"ego_laps={len(self.states['ego']['laps']) if self.states['ego'] else 0} "
+              f"opp_laps={len(self.states['opp']['laps']) if self.states['opp'] else 0} "
+              f"overtakes={len(self.detector.events)}",flush=True)
 
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--out',type=Path,required=True);p.add_argument('--timeout',type=float,default=1800.)
-    a,rosargs=p.parse_known_args();rclpy.init(args=rosargs);node=Monitor(a.out,a.timeout)
+    p.add_argument('--scan-stride',type=positive_stride,default=1,
+                   help='Store every received scan by default; N retains first and every Nth per vehicle.')
+    a,rosargs=p.parse_known_args();rclpy.init(args=rosargs);node=Monitor(a.out,a.timeout,scan_stride=a.scan_stride)
     try:
         while rclpy.ok() and not node.finished:rclpy.spin_once(node,timeout_sec=.1)
     except KeyboardInterrupt:node.reason='interrupted'
