@@ -14,7 +14,7 @@ bash installation/setup_workspace.sh
 ./start_ros2.sh exec python3 -m pytest -q tests
 ```
 
-Deben aprobar las 13 pruebas actuales. Usa Ubuntu 22.04 amd64 y ROS 2 Humble. El bootstrap instala las dependencias dentro del propio clon; no se necesitan el entorno, los mapas derivados ni los rosbags del autor.
+Deben aprobar las 19 pruebas actuales. Usa Ubuntu 22.04 amd64 y ROS 2 Humble. El bootstrap instala las dependencias dentro del propio clon; no se necesitan el entorno, los mapas derivados ni los rosbags del autor.
 
 ## 1. Cinco obstáculos estáticos
 

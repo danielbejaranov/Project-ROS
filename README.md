@@ -12,6 +12,8 @@ Esta guía prepara el proyecto dentro de su propio clon. No requiere las carpeta
 
 La segunda parte tiene [dos escenarios reproducibles: cinco obstáculos y adelantamiento a otro robot](scenarios/README.md). Se ejecutan y auditan por separado. Los resultados y el video de esta guía principal corresponden a la primera parte, sin esos obstáculos ni segundo robot.
 
+Los [rosbags de las nuevas ejecuciones](https://github.com/danielbejaranov/Project-ROS/releases/tag/evidencia-20261126) incluyen **velocidad lineal medida, posición y todos los scans LiDAR recibidos** de cada vehículo, junto con los datos de validación. La grabación muestra RViz y la consola real de ejecución, con una vista de seguimiento más amplia.
+
 ## 1. Requisitos y alcance
 
 - Ubuntu **22.04 amd64/x86_64**, Python **3.10** del sistema y ROS 2 **Humble** instalado por APT en `/opt/ros/humble`. Es la plataforma probada. No se ha validado esta guía en Windows, macOS, ARM ni otras versiones de Ubuntu/ROS.
@@ -80,7 +82,7 @@ external/f1tenth_gym/       Motor externo en el commit fijado
 
 Los dos paquetes se compilan como hermanos. Clonar únicamente este repositorio dentro de un `src/` y ejecutar colcon sin preparar el bridge anidado no es el procedimiento de esta guía.
 
-`check` debe terminar con código **0** y todas sus comprobaciones aprobadas: Python y módulos, ROS nativo, ambos paquetes, herramientas y mapa. Las pruebas actuales deben mostrar **13 passed** (las cinco del núcleo y las regresiones de la segunda parte). No continúes si falla una comprobación. La primera preparación y la primera ejecución pueden tardar por las descargas y la compilación JIT de Numba.
+`check` debe terminar con código **0** y todas sus comprobaciones aprobadas: Python y módulos, ROS nativo, ambos paquetes, herramientas y mapa. Las pruebas actuales deben mostrar **19 passed** (núcleo, escenarios y registro). No continúes si falla una comprobación. La primera preparación y la primera ejecución pueden tardar por las descargas y la compilación JIT de Numba.
 
 `start_ros2.sh` activa ROS, `.venv` y el overlay en cada llamada. No necesitas activar nada manualmente ni añadir rutas al perfil de tu usuario. En cada terminal nueva, vuelve a la raíz y utiliza el mismo lanzador.
 
