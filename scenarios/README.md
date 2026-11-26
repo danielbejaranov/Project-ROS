@@ -100,7 +100,7 @@ Debe indicar `passed: true` y todos los controles aprobados: al menos diez vuelt
 
 `lockstep` puede avanzar más rápido que el reloj real. Los tiempos de vuelta proceden de `/clock`; la duración del video corresponde al tiempo de pared. Para usar temporizadores normales cambia `--mode lockstep` por `--mode wall` y permite un timeout mayor si lo necesitas. Una captura lockstep sigue siendo una grabación directa del simulador real; no se acelera ni reconstruye a partir de CSV.
 
-Los videos se generan en la carpeta de cada tanda. Los MP4 y rosbags no forman parte del Git normal. Los videos finales de esta entrega se entregan como archivos locales para publicar; el enlace de YouTube de la primera parte no se utiliza como evidencia de estas pruebas nuevas. Cuando estén disponibles sus enlaces, se pueden añadir como enlaces de texto, sin contenido embebido.
+Los videos se generan en la carpeta de cada tanda. Los MP4 y rosbags no forman parte del Git normal. Las grabaciones del 26 de noviembre de 2026, con consola visible y una vista de seguimiento más amplia, están en YouTube: [cinco obstáculos y diez vueltas](https://youtu.be/4yqzK4zvlZ8) y [dos robots y adelantamiento](https://youtu.be/xx3N9OuGNBI). El enlace de YouTube de la primera parte acredita aquella tanda.
 
 Para reproducir un video y comprobar su decodificación completa:
 

@@ -12,6 +12,8 @@ Esta guía prepara el proyecto dentro de su propio clon. No requiere las carpeta
 
 La segunda parte tiene [dos escenarios reproducibles: cinco obstáculos y adelantamiento a otro robot](scenarios/README.md). Se ejecutan y auditan por separado. Los resultados y el video de esta guía principal corresponden a la primera parte, sin esos obstáculos ni segundo robot.
 
+Videos de la segunda parte con consola (26 de noviembre de 2026): [cinco obstáculos y diez vueltas](https://youtu.be/4yqzK4zvlZ8) y [dos robots y adelantamiento](https://youtu.be/xx3N9OuGNBI).
+
 Los [rosbags de las nuevas ejecuciones](https://github.com/danielbejaranov/Project-ROS/releases/tag/evidencia-20261126) incluyen **velocidad lineal medida, posición y todos los scans LiDAR recibidos** de cada vehículo, junto con los datos de validación. La grabación muestra RViz y la consola real de ejecución, con una vista de seguimiento más amplia.
 
 ## 1. Requisitos y alcance

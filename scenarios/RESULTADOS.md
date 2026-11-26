@@ -48,7 +48,7 @@ Se grabaron directamente las ventanas reales de RViz, con coche, contador y cron
 
 Estas tandas usan `lockstep`: el reloj del simulador puede avanzar más rápido que el tiempo de pared. El MP4 conserva el tiempo de pared capturado y sus tiempos de vuelta son simulados. No se aplicó aceleración de edición, cortes ni reconstrucción visual desde CSV.
 
-**Enlaces de YouTube de la Parte 2 pendientes de publicación por Daniel.** Al recibir las dos URL, se agregarán aquí como enlaces de texto. El enlace de la primera parte en el README principal acredita aquella tanda. El requisito docente de entregar video debe completarse adjuntando estos archivos o sus nuevos enlaces.
+Grabaciones actualizadas del **26 de noviembre de 2026**, con consola visible y una vista de seguimiento más amplia: [cinco obstáculos y diez vueltas](https://youtu.be/4yqzK4zvlZ8) y [dos robots y adelantamiento](https://youtu.be/xx3N9OuGNBI). Los rosbags y las auditorías de estas nuevas ejecuciones están en la [Release del 26 de noviembre](https://github.com/danielbejaranov/Project-ROS/releases/tag/evidencia-20261126). Las tablas y las evidencias anteriores documentan las tandas del **22 de noviembre**.
 
 ## Relación con la rúbrica
 
@@ -59,6 +59,6 @@ Estas tandas usan `lockstep`: el reloj del simulador puede avanzar más rápido 
 | Tutorial GitHub — 3 puntos | Enfoque, estructura, instalación, parámetros, ejecución y auditorías documentados |
 | Contador — 2 puntos | Contadores visibles, CSV y reconteo de cada vuelta |
 | Cronómetro — 3 puntos | Tiempo actual y mejor vuelta en RViz; tiempos individuales en CSV |
-| Video obligatorio — 2 puntos | Dos archivos locales validados; falta incorporar sus enlaces de entrega |
+| Video obligatorio — 2 puntos | Enlaces a las dos grabaciones reales, con RViz, contador, cronómetro y consola visibles |
 
 Los 30 puntos de desempeño dependen del ranking del grupo y la nota final también depende de la sustentación oral. Estos resultados permiten demostrar el funcionamiento técnico; la asignación de puntos corresponde al docente.
