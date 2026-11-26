@@ -16,6 +16,7 @@ import math
 import os
 from pathlib import Path
 import re
+import shlex
 import shutil
 import signal
 import subprocess
@@ -51,6 +52,12 @@ def arguments(defaults=None) -> argparse.Namespace:
     parser.add_argument("--display", default=":109")
     parser.add_argument("--domain", type=int, default=93)
     parser.add_argument("--record-video", action="store_true")
+    parser.add_argument('--scan-stride', type=int, default=1,
+                        help='Guardar uno de cada N scans recibidos; 1 conserva todos.')
+    parser.add_argument('--follow-scale', type=positive, default=35.,
+                        help='Escala de seguimiento RViz; menor valor muestra más pista.')
+    parser.add_argument('--audit-script', type=Path,
+                        help='Auditor de la tanda; se ejecuta con el bag cerrado y la consola visible.')
     parser.add_argument('--start-file', type=Path, required=True, help='Controller begins only after preflight is reviewed and this file is created.')
     parser.add_argument("--map-stem", type=Path,
                         default=Path(os.environ.get('DANIEL_F1TENTH_MAP',
@@ -68,6 +75,8 @@ def arguments(defaults=None) -> argparse.Namespace:
         parser.error("--domain must be between 0 and 232")
     if args.smooth < 1:
         parser.error("--smooth must be an integer greater than zero")
+    if args.scan_stride < 1:
+        parser.error('--scan-stride must be an integer greater than zero')
     if args.timeout_wall is None:
         args.timeout_wall = 600. if args.mode == 'lockstep' else 1200.
     return args
@@ -185,6 +194,11 @@ def main() -> int:
     args = arguments()
     out = args.out.expanduser().resolve()
     here = Path(__file__).resolve().parent
+    sys.path.insert(0, str(here))
+    from capture_layout import (configure_capture_views, start_console,
+                                arrange_capture_windows, close_capture_docks,
+                                record_audit_result, resolve_terminal)
+    resolve_terminal()
     monitor_path = here / 'monitor.py'
     # Native rclpy is an intentional guard against reusing the extracted runtime.
     import rclpy
@@ -196,7 +210,7 @@ def main() -> int:
     for binary in ('ros2', 'xacro'):
         if shutil.which(binary) is None:
             raise RuntimeError(f'Required executable missing: {binary}')
-    xvfb = shutil.which('Xvfb')
+    xvfb = os.environ.get('XVFB') or shutil.which('Xvfb')
     if xvfb is None:
         local_xvfb = here.parents[2] / 'work/ros_root/usr/bin/Xvfb'
         if not local_xvfb.is_file():
@@ -239,7 +253,16 @@ def main() -> int:
     per_run_config = out / 'bridge.yaml'
     per_run_config.write_text(yaml.safe_dump(config, sort_keys=False))
     launch_path = out / 'candidate.launch.py'
-    launch_path.write_text(launch_source(per_run_config, share, map_yaml))
+    source_views = globals().get('capture_view_sources',
+                                (here/'overview.rviz', here/'follow.rviz'))
+    generated_views = (out/'capture_overview.rviz', out/'capture_follow.rviz')
+    for source, generated in zip(source_views, generated_views):
+        shutil.copyfile(source, generated)
+    configure_capture_views(*generated_views, follow_scale=args.follow_scale)
+    infrastructure = launch_source(per_run_config, share, map_yaml)
+    for source, generated in zip(source_views, generated_views):
+        infrastructure = infrastructure.replace(repr(str(source)), repr(str(generated)))
+    launch_path.write_text(infrastructure)
     controller_parameters = {'use_sim_time': True, 'target_laps': 10,
                              'controller_profile': args.controller_profile,
                              'max_speed': args.max_speed,
@@ -254,11 +277,15 @@ def main() -> int:
         command.extend(['-p', f'{name}:={text}'])
     sources = {}
     for module_name in ('rclpy', 'daniel_gap.ros_node', 'daniel_gap.core',
-                        'daniel_gap.fast_core', 'f110_gym.envs.f110_env',
+                        'daniel_gap.fast_core', 'daniel_gap.obstacle_core', 'f110_gym.envs.f110_env',
                         'f1tenth_gym_ros.gym_bridge'):
         module = importlib.import_module(module_name)
         source = Path(module.__file__).resolve()
         sources[module_name] = {'path': str(source), 'sha256': digest(source)}
+    for source in (monitor_path, here/'recording_policy.py', here/'capture_layout.py',
+                   Path(sys.argv[0]).resolve()):
+        sources[str(source.relative_to(here.parent))] = {'path': str(source),
+                                                         'sha256': digest(source)}
     started_wall = time.monotonic()
     manifest = {
         'started_utc': datetime.now(timezone.utc).isoformat(),
@@ -278,6 +305,8 @@ def main() -> int:
         'video': {'size': '1920x1080', 'fps': 15, 'codec': 'libx264',
                   'movflags': '+faststart'} if args.record_video else None,
         'status': 'starting', 'commands': [],
+        'recording_policy': {'profile': 'validation', 'scan_stride': args.scan_stride,
+                             'variables': ['linear_velocity_measured', 'position', 'laser_scan']},
         'timing_note': 'Lap times use simulation clock; video duration uses wall time.',
     }
     manifest_path = out / 'manifest.json'
@@ -313,20 +342,30 @@ def main() -> int:
                 raise TimeoutError('Xvfb display did not become ready within 10 seconds')
             run.pause(.1)
         # Observer precedes infrastructure and controller for collision evidence.
-        monitor = run.start('monitor', [sys.executable, str(monitor_path), str(out / 'run')])
+        monitor = run.start('monitor', [sys.executable, str(monitor_path), str(out / 'run'),
+                                        '--scan-stride', str(args.scan_stride)])
         run.pause(1)
         run.start('infrastructure', ['ros2', 'launch', str(launch_path)])
         run.start('visual_hud', [sys.executable, str(here / 'follow_hud.py')])
         run.pause(args.startup_seconds)
-        subprocess.run([sys.executable, str(here / 'close_private_docks.py'), args.display], env=env, check=True)
+        start_console(run, out, here.parent, shlex.join([sys.executable, *sys.argv]),
+                      log_names=('monitor.log', 'controller.log', 'audit_result.log'),
+                      mode=args.mode)
+        run.pause(1)
+        close_capture_docks(args.display)
+        placements = arrange_capture_windows(args.display)
         run.pause(1)
         subprocess.run(['/usr/bin/ffmpeg', '-hide_banner', '-loglevel', 'error', '-y',
                         '-f', 'x11grab', '-video_size', '1920x1080', '-i', args.display + '.0',
                         '-frames:v', '1', str(out / 'preflight.png')],
                        env=env, check=True, timeout=20)
         manifest.update(status='awaiting_preflight_review', commands=run.records)
-        manifest['visualization'] = {'recording':'real RViz X11 capture', 'overview':'overview.rviz',
-                                     'detail':'follow.rviz', 'detail_target_frame':'ego_racecar/base_link',
+        manifest['visualization'] = {'recording':'real RViz and execution-console X11 capture',
+                                     'overview':generated_views[0].name,
+                                     'detail':generated_views[1].name,
+                                     'follow_scale':args.follow_scale,
+                                     'placements': placements,
+                                     'detail_target_frame':'ego_racecar/base_link',
                                      'physics_control_timing_changes':False}
         save_manifest()
         print(f'READY_FOR_CONTROLLER preflight={out / "preflight.png"} start_file={args.start_file}', flush=True)
@@ -376,6 +415,23 @@ def main() -> int:
                      and not observation['invalid_status'])
         manifest['status'] = 'completed' if completed else 'incomplete'
         print(json.dumps(summary, indent=2), flush=True)
+        if completed:
+            # The monitor has closed its writer. Only now may an auditor read
+            # the bag; capture and the actual log terminal remain running.
+            save_manifest()
+            audit_script = args.audit_script or here/'validate_run.py'
+            checks_path = out/'checks_capture.json'
+            audit_command = [sys.executable, str(audit_script), '--run', str(out/'run'),
+                             '--max-speed', str(args.max_speed), '--map-yaml', str(map_yaml),
+                             '--output', str(checks_path)]
+            with (out/'logs/audit.log').open('w') as audit_log:
+                result = subprocess.run(audit_command, env=env, stdout=audit_log,
+                                        stderr=subprocess.STDOUT)
+            manifest['audit_exit'] = result.returncode
+            manifest['audit_file'] = checks_path.name
+            completed = record_audit_result(out, checks_path, result.returncode)
+            manifest['status'] = 'completed' if completed else 'audit_failed'
+            time.sleep(4)
     except KeyboardInterrupt:
         interrupted = True
         manifest['status'] = 'interrupted'

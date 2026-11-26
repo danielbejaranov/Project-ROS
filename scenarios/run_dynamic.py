@@ -10,6 +10,7 @@ import importlib
 import json
 import os
 from pathlib import Path
+import shlex
 import shutil
 import subprocess
 import sys
@@ -20,6 +21,10 @@ PROJECT=Path(__file__).resolve().parents[1]
 HERE=Path(__file__).resolve().parent
 sys.path.insert(0,str(PROJECT/'ros2_validation'))
 from run_real_capture import Run,digest
+from capture_layout import (configure_capture_views, start_console,
+                            arrange_capture_windows, close_capture_docks,
+                            record_audit_result, resolve_terminal)
+from recording_policy import positive_stride
 
 def launch_text(config,share,map_yaml,overview,follow):
     return f'''from launch import LaunchDescription
@@ -38,7 +43,7 @@ def generate_launch_description():
     ])
 '''
 
-def configure_views(out):
+def configure_views(out, console=False, follow_scale=35.):
     base=yaml.safe_load((PROJECT/'ros2_validation/overview.rviz').read_text())
     displays=base['Visualization Manager']['Displays']
     displays=[d for d in displays if d['Class'] not in ('rviz_default_plugins/Path','rviz_default_plugins/Marker')]
@@ -56,7 +61,7 @@ def configure_views(out):
     follow['Visualization Manager']['Views']['Current'].update({'Target Frame':'ego_racecar/base_link','X':0.,'Y':0.,'Scale':65.,'Angle':0.})
     follow['Window Geometry'].update({'Width':840,'Height':1080,'X':1080,'Y':0})
     path=out/'dynamic_follow.rviz';path.write_text(yaml.safe_dump(follow,sort_keys=False))
-    return overview,path
+    return configure_capture_views(overview,path,console=console,follow_scale=follow_scale)
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
@@ -66,7 +71,15 @@ def main():
     p.add_argument('--display',default=':190');p.add_argument('--domain',type=int,default=190)
     p.add_argument('--timeout-wall',type=float,default=1800.);p.add_argument('--record-video',action='store_true')
     p.add_argument('--startup-seconds',type=float,default=6.)
+    p.add_argument('--console-layout',action=argparse.BooleanOptionalAction,default=None,
+                   help='Show a real execution-log terminal; enabled by default when recording.')
+    p.add_argument('--follow-scale',type=float,default=35.,help='RViz follow-view pixels per metre.')
+    p.add_argument('--scan-stride',type=positive_stride,default=1,
+                   help='Record every received scan by default; values >1 explicitly decimate the bag.')
     a=p.parse_args()
+    console=a.record_video if a.console_layout is None else a.console_layout
+    if a.follow_scale<=0:raise ValueError('--follow-scale must be positive')
+    if console:resolve_terminal()
     import rclpy
     from ament_index_python.packages import get_package_share_directory
     if not Path(rclpy.__file__).resolve().is_relative_to(Path('/opt/ros/humble')):
@@ -87,9 +100,9 @@ def main():
     for f in (map_yaml,map_image,HERE/'dynamic_monitor.py',HERE/'dynamic_controller.py'):
         if not f.is_file():raise FileNotFoundError(f)
     bridge_config=out/'dynamic_bridge.yaml';bridge_config.write_text(yaml.safe_dump(bridge,sort_keys=False))
-    overview,follow=configure_views(out)
+    overview,follow=configure_views(out,console=console,follow_scale=a.follow_scale)
     launch=out/'dynamic_infrastructure.launch.py';launch.write_text(launch_text(bridge_config,share,map_yaml,overview,follow))
-    xvfb=shutil.which('Xvfb')
+    xvfb=os.environ.get('XVFB') or shutil.which('Xvfb')
     if xvfb is None:
         xvfb=str(PROJECT.parents[1]/'work/ros_root/usr/bin/Xvfb')
         if not Path(xvfb).is_file():raise RuntimeError('Install Xvfb for a private RViz display')
@@ -101,21 +114,44 @@ def main():
         source=Path(importlib.import_module(mod).__file__).resolve();sources[mod]={'path':str(source),'sha256':digest(source)}
     for f in ('dynamic_controller.py','dynamic_monitor.py','dynamic_metrics.py','run_dynamic.py'):
         source=HERE/f;sources[f]={'path':str(source),'sha256':digest(source)}
-    manifest={'started_utc':datetime.now(timezone.utc).isoformat(),'mode':a.mode,'domain':a.domain,'display':a.display,'native_python':sys.executable,'native_modules':sources,'map_yaml':str(map_yaml),'map_yaml_sha256':digest(map_yaml),'map_image':str(map_image),'map_image_sha256':digest(map_image),'physics_overrides':{},'controller_config':cfg,'finish_protocol':'at least ten laps EACH; retain all extra laps; simultaneous guided stop; four measured stopped simulation seconds','video_requested':a.record_video,'video_source':'actual RViz X11 framebuffer','timing_note':'Lap times use simulation time. Lockstep video can be faster than this clock.','status':'starting'}
+    layout_source=PROJECT/'ros2_validation/capture_layout.py'
+    sources['capture_layout.py']={'path':str(layout_source),'sha256':digest(layout_source)}
+    policy_source=PROJECT/'ros2_validation/recording_policy.py'
+    sources['recording_policy.py']={'path':str(policy_source),'sha256':digest(policy_source)}
+    manifest={'started_utc':datetime.now(timezone.utc).isoformat(),'mode':a.mode,'domain':a.domain,'display':a.display,'native_python':sys.executable,'native_modules':sources,'map_yaml':str(map_yaml),'map_yaml_sha256':digest(map_yaml),'map_image':str(map_image),'map_image_sha256':digest(map_image),'physics_overrides':{},'controller_config':cfg,'finish_protocol':'at least ten laps EACH; retain all extra laps; simultaneous guided stop; four measured stopped simulation seconds','video_requested':a.record_video,'video_source':'actual RViz X11 framebuffer','console_layout':console,'follow_scale':a.follow_scale,'scan_stride':a.scan_stride,'timing_note':'Lap times use simulation time. Lockstep video can be faster than this clock.','status':'starting'}
     def save():(out/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-    save();run=Run(out,env);started=time.monotonic();error=None;completed=False
+    save();run=Run(out,env);started=time.monotonic();error=None;completed=False;audit_code=None
     try:
         run.start('xvfb',[xvfb,a.display,'-screen','0','1920x1080x24','-ac','-nolisten','tcp','-noreset'])
         end=time.monotonic()+10
         while not Path(f'/tmp/.X11-unix/X{display_num}').exists():
             if time.monotonic()>end:raise TimeoutError('Xvfb startup')
             run.pause(.1)
-        monitor=run.start('monitor',[sys.executable,str(HERE/'dynamic_monitor.py'),'--out',str(out/'run'),'--timeout',str(a.timeout_wall)])
+        monitor=run.start('monitor',[sys.executable,str(HERE/'dynamic_monitor.py'),'--out',str(out/'run'),
+                                     '--timeout',str(a.timeout_wall),'--scan-stride',str(a.scan_stride)])
         run.pause(1.)
         run.start('infrastructure',['ros2','launch',str(launch)])
         run.pause(a.startup_seconds)
-        docks=PROJECT/'ros2_validation/close_private_docks.py'
-        subprocess.run([sys.executable,str(docks),a.display],env=env,check=True,timeout=20)
+        if console:
+            def shown_path(path):
+                try:return str(Path(path).resolve().relative_to(PROJECT))
+                except ValueError:return str(path)
+            hint_args=['./start_ros2.sh','exec','python3','scenarios/run_dynamic.py',
+                       '--out',shown_path(out),'--config',shown_path(a.config),
+                       '--map-stem',shown_path(a.map_stem),'--mode',a.mode,
+                       '--display',a.display,'--domain',str(a.domain),
+                       '--follow-scale',str(a.follow_scale),
+                       '--scan-stride',str(a.scan_stride),
+                       '--timeout-wall',str(a.timeout_wall),
+                       '--startup-seconds',str(a.startup_seconds),'--console-layout']
+            if a.record_video:hint_args.append('--record-video')
+            hint=shlex.join(hint_args)
+            start_console(run,out,PROJECT,hint,mode=a.mode,
+                          log_names=('monitor.log','controllers.log','audit_result.log'))
+            run.pause(1.)
+        arrange_capture_windows(a.display,console=console)
+        close_capture_docks(a.display)
+        manifest['capture_layout']=arrange_capture_windows(a.display,console=console)
         run.pause(1.)
         subprocess.run(['/usr/bin/ffmpeg','-hide_banner','-loglevel','error','-y','-f','x11grab','-video_size','1920x1080','-i',a.display+'.0','-frames:v','1',str(out/'preflight.png')],env=env,check=True,timeout=20)
         print(f'PREFLIGHT {out/"preflight.png"}',flush=True)
@@ -136,15 +172,33 @@ def main():
             time.sleep(.25)
         summary=json.loads((out/'run/summary_dynamic.json').read_text());manifest['summary']=summary
         completed=summary['completed'] is True;manifest['status']='completed' if completed else 'incomplete'
+        if completed:
+            # The monitor has closed the bag. Keep the actual RViz and terminal
+            # visible while auditing the completed observation, before MP4 close.
+            manifest['observation_ended_utc']=datetime.now(timezone.utc).isoformat()
+            manifest['ended_utc']=manifest['observation_ended_utc']
+            manifest['capture_phase']='auditing_closed_rosbag';save()
+            command=[sys.executable,str(HERE/'validate_dynamic.py'),'--run',str(out/'run'),
+                     '--config',str(out/'dynamic_controllers.yaml'),'--map-yaml',str(map_yaml),
+                     '--output',str(out/'checks_dynamic.json')]
+            manifest['auditor']={'source':str(HERE/'validate_dynamic.py'),
+                                 'sha256':digest(HERE/'validate_dynamic.py')}
+            with (out/'logs/audit.log').open('w') as audit_log:
+                audit=subprocess.run(command,env=env,stdout=audit_log,stderr=subprocess.STDOUT)
+            audit_code=audit.returncode;manifest['audit_exit']=audit_code
+            audit_passed=record_audit_result(out,out/'checks_dynamic.json',audit_code)
+            manifest['capture_phase']='showing_actual_audit_result';save()
+            if console or a.record_video:
+                # tail -F refreshes once per second. Preserve a readable final
+                # verdict derived from the real auditor rather than a mock result.
+                time.sleep(4.)
+            if not audit_passed:
+                raise RuntimeError('The real rosbag audit failed; see logs/audit.log and checks_dynamic.json')
     except KeyboardInterrupt:error='interrupted';manifest.update(status='interrupted',error=error)
     except Exception as exc:error=f'{type(exc).__name__}: {exc}';manifest.update(status='failed',error=error);print(error,file=sys.stderr,flush=True)
     finally:
         manifest['commands']=run.records;manifest['process_exit']=run.stop();manifest['wall_seconds']=time.monotonic()-started
         manifest['ended_utc']=datetime.now(timezone.utc).isoformat();save()
-    if completed:
-        command=[sys.executable,str(HERE/'validate_dynamic.py'),'--run',str(out/'run'),'--config',str(out/'dynamic_controllers.yaml'),'--map-yaml',str(map_yaml),'--output',str(out/'checks_dynamic.json')]
-        audit=subprocess.run(command,env=env,stdout=(out/'logs/audit.log').open('w'),stderr=subprocess.STDOUT)
-        manifest['audit_exit']=audit.returncode;save()
-        return audit.returncode
+    if completed and not error:return 0 if audit_code==0 else 1
     return 1
 if __name__=='__main__':raise SystemExit(main())

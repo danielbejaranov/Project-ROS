@@ -21,6 +21,7 @@ def arguments():
         'gain': .7, 'lateral_accel': 6., 'brake_accel': 6.,
         'smooth': 11, 'alpha': .8, 'display': ':189', 'domain': 189,
         'timeout_wall': 1800.,
+        'audit_script': HERE/'validate_static.py',
     })
 
 
@@ -38,6 +39,7 @@ def launch_source(config, share, map_yaml):
 
 recording.launch_source = launch_source
 recording.arguments = arguments
+recording.capture_view_sources = (HERE/'static_overview.rviz', HERE/'static_follow.rviz')
 
 if __name__ == '__main__':
     raise SystemExit(recording.main())

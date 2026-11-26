@@ -98,3 +98,5 @@ laps.csv
 # Mapas derivados del material docente
 /results/Sakhir_obstacles*
 /scenarios/runs/
+.tools/
+/entrega/

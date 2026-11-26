@@ -45,7 +45,7 @@ DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends --no-remove in
   ros-humble-xacro python3-transforms3d python3-venv ffmpeg
 DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends --no-remove install \
   git python3-dev python3-pip build-essential python3-numpy python3-pil \
-  python3-yaml python3-pytest python3-future xvfb libx11-6 libxtst6 xauth libgl1 libglu1-mesa \
+  python3-yaml python3-pytest python3-future xvfb xterm libx11-6 libxtst6 xauth libgl1 libglu1-mesa \
   ros-humble-rosbag2 ros-humble-rosbag2-storage-default-plugins \
   ros-humble-rclpy ros-humble-teleop-twist-keyboard
 test -r /opt/ros/humble/setup.bash

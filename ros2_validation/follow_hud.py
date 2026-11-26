@@ -24,9 +24,9 @@ class FollowHUD(Node):
         output=deepcopy(msg)
         output.header.frame_id='map'
         output.pose.position.x=self.position.x
-        output.pose.position.y=self.position.y+5.4
+        output.pose.position.y=self.position.y+6.2
         output.pose.position.z=.2
-        output.scale.z=.25
+        output.scale.z=.5
         self.pub.publish(output)
 def main():
     rclpy.init();node=FollowHUD()

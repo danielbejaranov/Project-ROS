@@ -217,7 +217,7 @@ Visualization Manager:
       Class: rviz_default_plugins/TopDownOrtho
       Name: Detalle del vehiculo real
       Target Frame: ego_racecar/base_link
-      Scale: 80.0
+      Scale: 35.0
       X: 0.0
       Y: 0.0
       Angle: 0.0
