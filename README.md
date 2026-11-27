@@ -4,17 +4,27 @@
 
 Este proyecto conduce un F1TENTH simulado mediante LiDAR, cuenta diez vueltas consecutivas y registra sus tiempos y contactos. **F1TENTH Gym es el simulador; RViz visualiza su estado.** La odometría se utiliza para medir vueltas, no para seguir una trayectoria. No se emplean waypoints ni un mapa para decidir la dirección o la velocidad.
 
-[Ver el video de la ejecución real en YouTube](https://youtu.be/oMR08ioytbE).
+## Videos
 
-La grabación muestra diez vueltas en Sakhir, el contador y el cronómetro, con vista general y cercana de RViz. La tanda registró cero contactos y aprobó 17/17 comprobaciones de auditoría. Mejor vuelta: **50,82 s**; media: **51,340 s**. El video se entrega mediante ese enlace; los archivos MP4 no forman parte del repositorio.
+- **Parte 1 — pista libre, diez vueltas:** [ver en YouTube](https://youtu.be/oMR08ioytbE).
+- **Parte 2 — cinco obstáculos, diez vueltas:** [ver en YouTube](https://youtu.be/4yqzK4zvlZ8).
+- **Parte 2 — dos robots y adelantamiento:** [ver en YouTube](https://youtu.be/xx3N9OuGNBI).
+
+Las grabaciones muestran el simulador real con contador y cronómetro. Las de la segunda parte, del 26 de noviembre de 2026, incluyen la consola de ejecución y una vista de seguimiento más amplia. Los videos se entregan mediante enlaces; los MP4 no forman parte del repositorio.
+
+## Datos registrados
+
+Los rosbags de la segunda parte contienen **posición, velocidad lineal medida y LiDAR**, además de comandos y datos de validación. Se registraron `/scan`, `/ego_racecar/odom` y `/drive`; la prueba con dos robots añade `/opp_scan`, `/opp_racecar/odom` y `/opp_drive`.
+
+- **Parte 1 — pista libre:** [CSV de tiempos por vuelta](ros2_validation/recording_20261115_wall/run/laps_ros.csv), [resumen](ros2_validation/recording_20261115_wall/run/summary_ros.json) y [auditoría](ros2_validation/recording_20261115_wall/checks_ros.json).
+- **Parte 2 — cinco obstáculos:** [descargar rosbag, CSV e informes (350 MB)](https://github.com/danielbejaranov/Project-ROS/releases/download/evidencia-20261126/rosbag_5_obstaculos_20261126.tar.gz) o [solo el CSV de posición y velocidad](https://github.com/danielbejaranov/Project-ROS/releases/download/evidencia-20261126/telemetria_5_obstaculos_20261126.csv).
+- **Parte 2 — dos robots y adelantamiento:** [descargar rosbag, CSV e informes (1,04 GB)](https://github.com/danielbejaranov/Project-ROS/releases/download/evidencia-20261126/rosbag_adelantamiento_20261126.tar.gz), [CSV del vehículo principal](https://github.com/danielbejaranov/Project-ROS/releases/download/evidencia-20261126/telemetria_adelantamiento_ego_20261126.csv) y [CSV del segundo robot](https://github.com/danielbejaranov/Project-ROS/releases/download/evidencia-20261126/telemetria_adelantamiento_opp_20261126.csv).
+
+Los CSV de telemetría incluyen tiempo simulado, posición `x/y` (m), orientación, velocidad medida `vx/vy` (m/s), velocidad ordenada y vueltas. Son una vista reducida de la primera y cada décima odometría recibida. Los scans LiDAR y cada odometría recibida se conservan en el rosbag. La [Release contiene los hashes y las instrucciones de extracción y verificación](https://github.com/danielbejaranov/Project-ROS/releases/tag/evidencia-20261126). De la primera parte se publican aquí los tiempos y los informes; su rosbag histórico no está disponible para descarga.
+
+La primera parte registró cero contactos y aprobó 17/17 comprobaciones de auditoría, con mejor vuelta de **50,82 s** y media de **51,340 s**. Los resultados y los comandos de esta guía principal corresponden a esa prueba. La segunda parte tiene [dos escenarios reproducibles](scenarios/README.md), que se ejecutan y auditan por separado.
 
 Esta guía prepara el proyecto dentro de su propio clon. No requiere las carpetas, los rosbags ni el entorno Python del equipo del autor. Ejecuta los comandos desde la raíz del repositorio, salvo cuando se indique otra cosa.
-
-La segunda parte tiene [dos escenarios reproducibles: cinco obstáculos y adelantamiento a otro robot](scenarios/README.md). Se ejecutan y auditan por separado. Los resultados y el video de esta guía principal corresponden a la primera parte, sin esos obstáculos ni segundo robot.
-
-Videos de la segunda parte con consola (26 de noviembre de 2026): [cinco obstáculos y diez vueltas](https://youtu.be/4yqzK4zvlZ8) y [dos robots y adelantamiento](https://youtu.be/xx3N9OuGNBI).
-
-Los [rosbags de las nuevas ejecuciones](https://github.com/danielbejaranov/Project-ROS/releases/tag/evidencia-20261126) incluyen **velocidad lineal medida, posición y todos los scans LiDAR recibidos** de cada vehículo, junto con los datos de validación. La grabación muestra RViz y la consola real de ejecución, con una vista de seguimiento más amplia.
 
 ## 1. Requisitos y alcance
 
